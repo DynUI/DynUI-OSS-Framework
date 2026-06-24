@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>dynui renderer visual harness</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #0b0f14; color: #e8edf2; font: 15px/1.4 -apple-system, system-ui, sans-serif; }
+  #root { padding: 16px; min-height: 100vh; }
+  .screen-title { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #7d8ea0; margin: 4px 0 12px; }
+  .section { margin-bottom: 18px; }
+  .section__label { font-size: 12px; color: #5cc8ff; margin: 0 0 8px; text-transform: uppercase; letter-spacing: .06em; }
+  .card { background: #16202b; border: 1px solid #243343; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; }
+  .card__id { font-weight: 600; font-size: 15px; color: #e8edf2; }
+  .card__variant { font-size: 11px; color: #7d8ea0; margin-left: 8px; }
+  .card__props { margin-top: 6px; font-size: 12px; color: #9fb2c4; white-space: pre-wrap; word-break: break-word; }
+  .card__reason { margin-top: 6px; font-size: 11px; color: #6b7c8d; font-style: italic; }
+  .slot { margin-top: 10px; padding-left: 12px; border-left: 2px solid #2a3b4d; }
+  .slot__label { font-size: 11px; color: #7d8ea0; margin-bottom: 6px; }
+  /* Safe fallback UI for an unregistered component (mirrors the app ErrorBoundary). */
+  .unregistered { background: #2a1622; border: 1px dashed #b3445f; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; color: #ff9db4; }
+  .unregistered__title { font-weight: 700; }
+  .invalid-composition { background: #2a2416; border: 1px dashed #b39b44; border-radius: 10px; padding: 8px 12px; margin-top: 8px; color: #ffe39d; font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  function renderItem(item, knownIds) {
+    // Unknown component → safe fallback (never a blank or a crash).
+    if (!knownIds.includes(item.componentId)) {
+      const f = el("div", "unregistered");
+      f.appendChild(el("div", "unregistered__title", "Unregistered component"));
+      f.appendChild(el("div", null, item.componentId));
+      return f;
+    }
+    const card = el("div", "card");
+    const head = el("div");
+    head.appendChild(el("span", "card__id", item.componentId));
+    if (item.variant) head.appendChild(el("span", "card__variant", item.variant));
+    card.appendChild(head);
+
+    const props = item.props && Object.keys(item.props).length ? item.props : null;
+    if (props) card.appendChild(el("div", "card__props", JSON.stringify(props)));
+    if (item.reason) card.appendChild(el("div", "card__reason", item.reason));
+
+    if (item.invalidSlots && item.invalidSlots.length) {
+      card.appendChild(el("div", "invalid-composition", "Invalid composition in slot(s): " + item.invalidSlots.join(", ")));
+    }
+    for (const [slotId, kids] of Object.entries(item.slots || {})) {
+      const slot = el("div", "slot");
+      slot.appendChild(el("div", "slot__label", slotId));
+      for (const kid of kids) slot.appendChild(renderItem(kid, knownIds));
+      card.appendChild(slot);
+    }
+    return card;
+  }
+
+  window.renderScreen = function (scenario) {
+    const root = document.getElementById("root");
+    root.innerHTML = "";
+    root.appendChild(el("div", "screen-title", scenario.label));
+    for (const section of scenario.sections) {
+      const s = el("div", "section");
+      if (section.label) s.appendChild(el("div", "section__label", section.label));
+      for (const item of section.items) s.appendChild(renderItem(item, scenario.knownIds));
+      root.appendChild(s);
+    }
+    return { items: root.querySelectorAll(".card, .unregistered").length };
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/contracts" },
+    { "path": "packages/signal" },
+    { "path": "packages/validate" },
+    { "path": "packages/generate" },
+    { "path": "packages/experiments" },
+    { "path": "packages/telemetry" },
+    { "path": "packages/profile" },
+    { "path": "packages/figma" },
+    { "path": "packages/privacy" },
+    { "path": "packages/cli" }
+  ]
+}

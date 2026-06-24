@@ -1,0 +1,648 @@
+{
+  "schemaVersion": "component-manifest/1.0",
+  "registry": {
+    "name": "fitness-pack",
+    "version": "0.1.0",
+    "domain": "fitness"
+  },
+  "tokens": {
+    "color.accent": "#4F8DFD",
+    "radius.card": 20,
+    "surface.style": "liquid-glass"
+  },
+  "constraints": {
+    "maxModulesAboveFold": 3,
+    "neverHide": [
+      "activity-headline"
+    ],
+    "pinned": [
+      {
+        "componentId": "activity-headline",
+        "position": "top"
+      }
+    ],
+    "stableAnchors": [
+      "activity-headline",
+      "route-map-hero"
+    ],
+    "allowedCategoriesBySurface": {
+      "activity-detail": [
+        "headline",
+        "metric",
+        "chart",
+        "table",
+        "hero",
+        "insight",
+        "social"
+      ],
+      "activity-log": [
+        "headline",
+        "metric",
+        "insight",
+        "social"
+      ]
+    }
+  },
+  "components": [
+    {
+      "id": "activity-headline",
+      "name": "Activity Headline",
+      "version": "1.0.0",
+      "figmaNodeId": "12:101",
+      "category": "headline",
+      "description": "The core identity of the activity: title, type, date, and the single headline outcome. Always present so the user is never disoriented.",
+      "intent": [
+        "orient",
+        "identify-activity"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "description": "Title + key outcome."
+        },
+        {
+          "id": "with-photo",
+          "description": "Adds a hero photo for casual/wellness users."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "activity.title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "activity.type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "activity.startedAt",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "activity.headlineStat",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "activity.photoUrl",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "contract": {
+        "audience": [
+          "*"
+        ],
+        "surfaces": [
+          "activity-detail",
+          "activity-log"
+        ],
+        "priority": 100,
+        "prominence": "hero",
+        "goals": []
+      }
+    },
+    {
+      "id": "recovery-score-card",
+      "name": "Recovery / Readiness Card",
+      "version": "1.0.0",
+      "figmaNodeId": "12:140",
+      "category": "metric",
+      "description": "Bevel-style at-a-glance readiness score derived from HRV + sleep, with a one-line plain-language interpretation. Best for wellness-minded users who want a single 'how am I doing' signal, not raw numbers.",
+      "intent": [
+        "summarize-readiness",
+        "motivate",
+        "reassure"
+      ],
+      "variants": [
+        {
+          "id": "compact",
+          "description": "Score ring only."
+        },
+        {
+          "id": "expanded",
+          "description": "Score ring + contributing factors + narrative."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "readiness.score",
+          "type": "number",
+          "required": true,
+          "source": "healthkit"
+        },
+        {
+          "key": "readiness.hrv",
+          "type": "number",
+          "required": false
+        },
+        {
+          "key": "readiness.narrative",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "contract": {
+        "audience": [
+          "wellness",
+          "performance"
+        ],
+        "surfaces": [
+          "activity-detail",
+          "activity-log"
+        ],
+        "showWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "wellness",
+            "weight": 3
+          },
+          {
+            "signal": "behavior.fitness.engagement.insights.readRate",
+            "op": "gte",
+            "value": 0.3,
+            "weight": 1
+          }
+        ],
+        "priority": 80,
+        "prominence": "primary",
+        "goals": [
+          "readiness-engagement"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.insights.readRate"
+    },
+    {
+      "id": "training-load-chart",
+      "name": "Training Load / Strain Chart",
+      "version": "1.0.0",
+      "figmaNodeId": "12:160",
+      "category": "chart",
+      "description": "Time-series of strain / training load vs recovery over recent sessions. For performance users tracking how this activity fits their load trend. Data-dense; not for casual users.",
+      "intent": [
+        "analyze-load",
+        "plan-training"
+      ],
+      "variants": [
+        {
+          "id": "sparkline",
+          "description": "Compact trend."
+        },
+        {
+          "id": "full",
+          "description": "Full chart with acute:chronic ratio."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "training.loadSeries",
+          "type": "series",
+          "required": true,
+          "source": "api:activities"
+        },
+        {
+          "key": "training.acuteChronicRatio",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "contract": {
+        "audience": [
+          "performance"
+        ],
+        "surfaces": [
+          "activity-detail"
+        ],
+        "showWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "performance",
+            "weight": 3
+          },
+          {
+            "signal": "behavior.fitness.engagement.charts.openRate",
+            "op": "gte",
+            "value": 0.5,
+            "weight": 2
+          }
+        ],
+        "hideWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "wellness"
+          }
+        ],
+        "priority": 75,
+        "prominence": "primary",
+        "goals": [
+          "chart-engagement",
+          "session-depth"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.charts.openRate"
+    },
+    {
+      "id": "hr-zone-breakdown",
+      "name": "Heart-Rate Zone Breakdown",
+      "version": "1.0.0",
+      "figmaNodeId": "12:175",
+      "category": "chart",
+      "description": "Time-in-zone bars (Z1–Z5). For users who care about intensity distribution. Pairs well with the split table for performance users.",
+      "intent": [
+        "analyze-intensity"
+      ],
+      "variants": [
+        {
+          "id": "bars",
+          "description": "Horizontal zone bars."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "activity.hrZones",
+          "type": "series",
+          "required": true,
+          "source": "healthkit"
+        }
+      ],
+      "contract": {
+        "audience": [
+          "performance"
+        ],
+        "surfaces": [
+          "activity-detail"
+        ],
+        "showWhen": [
+          {
+            "signal": "preferences.fitness.primaryMetric",
+            "op": "eq",
+            "value": "heartRate",
+            "weight": 2
+          }
+        ],
+        "priority": 60,
+        "prominence": "secondary",
+        "goals": [
+          "chart-engagement"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.charts.openRate"
+    },
+    {
+      "id": "split-table",
+      "name": "Split / Lap Table",
+      "version": "1.0.0",
+      "figmaNodeId": "12:190",
+      "category": "table",
+      "description": "Per-km/lap table with pace, HR, elevation, cadence. The densest performance component. Hidden for casual users to avoid clutter.",
+      "intent": [
+        "analyze-splits"
+      ],
+      "variants": [
+        {
+          "id": "essential",
+          "description": "Pace + HR columns."
+        },
+        {
+          "id": "full",
+          "description": "All columns incl. cadence/elevation."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "activity.splits",
+          "type": "series",
+          "required": true,
+          "source": "api:activities"
+        }
+      ],
+      "contract": {
+        "audience": [
+          "performance"
+        ],
+        "surfaces": [
+          "activity-detail"
+        ],
+        "showWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "performance",
+            "weight": 3
+          }
+        ],
+        "hideWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "wellness"
+          }
+        ],
+        "priority": 55,
+        "prominence": "secondary",
+        "goals": [
+          "session-depth"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.charts.openRate"
+    },
+    {
+      "id": "route-map-hero",
+      "name": "Route Map Hero",
+      "version": "1.0.0",
+      "figmaNodeId": "12:205",
+      "category": "hero",
+      "description": "Large map of the route with optional photo. A visual, emotional anchor — strong for casual/wellness and social users who value the experience over the numbers.",
+      "intent": [
+        "relive",
+        "share"
+      ],
+      "variants": [
+        {
+          "id": "map",
+          "description": "Map only."
+        },
+        {
+          "id": "map-photo",
+          "description": "Map with overlaid photo."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "activity.route",
+          "type": "geojson",
+          "required": true
+        },
+        {
+          "key": "activity.photoUrl",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "contract": {
+        "audience": [
+          "wellness",
+          "social"
+        ],
+        "surfaces": [
+          "activity-detail"
+        ],
+        "showWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "in",
+            "value": [
+              "wellness",
+              "social"
+            ],
+            "weight": 2
+          }
+        ],
+        "priority": 70,
+        "prominence": "hero",
+        "goals": [
+          "share-rate"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.insights.readRate"
+    },
+    {
+      "id": "insight-card",
+      "name": "Insight / Narrative Card",
+      "version": "1.0.0",
+      "figmaNodeId": "12:220",
+      "category": "insight",
+      "description": "Bevel-style plain-language insight that turns complex data into one actionable takeaway (e.g. 'Your easy pace is getting easier at the same heart rate'). Motivating for casual users, contextual for performance users.",
+      "intent": [
+        "motivate",
+        "explain",
+        "coach"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "description": "Icon + headline + one sentence."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "insight.headline",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "insight.body",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "contract": {
+        "audience": [
+          "*"
+        ],
+        "surfaces": [
+          "activity-detail",
+          "activity-log"
+        ],
+        "showWhen": [
+          {
+            "signal": "behavior.fitness.engagement.insights.readRate",
+            "op": "gte",
+            "value": 0.2,
+            "weight": 1
+          }
+        ],
+        "priority": 50,
+        "prominence": "secondary",
+        "goals": [
+          "readiness-engagement",
+          "retention"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.insights.readRate"
+    },
+    {
+      "id": "social-kudos-bar",
+      "name": "Kudos & Comments Bar",
+      "version": "1.0.0",
+      "figmaNodeId": "12:240",
+      "category": "social",
+      "description": "Kudos count, commenter avatars, and a share action. The primary surface for social users; demoted or hidden for users who never engage socially.",
+      "intent": [
+        "connect",
+        "share"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "description": "Kudos + comments + share."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "social.kudosCount",
+          "type": "number",
+          "required": true
+        },
+        {
+          "key": "social.comments",
+          "type": "series",
+          "required": false
+        }
+      ],
+      "contract": {
+        "audience": [
+          "social"
+        ],
+        "surfaces": [
+          "activity-detail",
+          "activity-log"
+        ],
+        "showWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "social",
+            "weight": 3
+          },
+          {
+            "signal": "behavior.fitness.engagement.social.kudosRate",
+            "op": "gte",
+            "value": 0.1,
+            "weight": 2
+          }
+        ],
+        "hideWhen": [
+          {
+            "signal": "behavior.fitness.engagement.social.kudosRate",
+            "op": "lt",
+            "value": 0.02
+          }
+        ],
+        "priority": 65,
+        "prominence": "primary",
+        "goals": [
+          "social-engagement"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.social.kudosRate"
+    },
+    {
+      "id": "segment-leaderboard",
+      "name": "Segment Leaderboard",
+      "version": "1.0.0",
+      "figmaNodeId": "12:260",
+      "category": "social",
+      "description": "Ranking on matched route segments vs friends/global. Competitive hook for social users; only meaningful when segments were matched on this activity.",
+      "intent": [
+        "compete",
+        "compare"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "description": "Top segments + the user's rank."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "social.segments",
+          "type": "series",
+          "required": true
+        }
+      ],
+      "contract": {
+        "audience": [
+          "social",
+          "performance"
+        ],
+        "surfaces": [
+          "activity-detail"
+        ],
+        "showWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "social",
+            "weight": 2
+          }
+        ],
+        "priority": 45,
+        "prominence": "secondary",
+        "goals": [
+          "social-engagement",
+          "compete-rate"
+        ]
+      },
+      "engagementSignal": "fitness.engagement.social.kudosRate"
+    },
+    {
+      "id": "strength-volume-card",
+      "name": "Strength Volume Card",
+      "version": "0.1.0",
+      "figmaNodeId": "12:280",
+      "category": "metric",
+      "description": "Bevel-style Strength Builder summary: muscular load / volume per muscle group from this and recent sessions. New component under canary test for performance users.",
+      "intent": [
+        "analyze-strength",
+        "plan-training"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "description": "Volume bars per muscle group."
+        }
+      ],
+      "slots": [],
+      "data": [
+        {
+          "key": "strength.volumeByGroup",
+          "type": "series",
+          "required": true,
+          "source": "api:strength"
+        }
+      ],
+      "contract": {
+        "audience": [
+          "performance"
+        ],
+        "surfaces": [
+          "activity-detail"
+        ],
+        "showWhen": [
+          {
+            "signal": "archetype.primary",
+            "op": "eq",
+            "value": "performance",
+            "weight": 2
+          }
+        ],
+        "priority": 72,
+        "prominence": "primary",
+        "goals": [
+          "strength-engagement"
+        ]
+      },
+      "experiment": {
+        "id": "exp.strength-volume",
+        "enableForVariant": "treatment"
+      },
+      "engagementSignal": "fitness.engagement.charts.openRate"
+    }
+  ]
+}

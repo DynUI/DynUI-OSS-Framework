@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dynui.dev/schema/experiment-def.schema.json",
+  "title": "ExperimentDef",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "segment": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "signal": {
+            "type": "string"
+          },
+          "op": {
+            "enum": [
+              "gt",
+              "gte",
+              "lt",
+              "lte",
+              "eq",
+              "neq",
+              "in",
+              "exists"
+            ]
+          },
+          "value": {},
+          "weight": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "signal",
+          "op"
+        ]
+      }
+    },
+    "allocation": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "weight"
+        ]
+      }
+    },
+    "goal": {
+      "type": "string"
+    },
+    "guardrails": {
+      "type": "object",
+      "properties": {
+        "minSamplesPerVariant": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "description",
+    "segment",
+    "allocation",
+    "variants",
+    "goal"
+  ]
+}

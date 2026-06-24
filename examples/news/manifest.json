@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "component-manifest/1.0",
+  "registry": { "name": "news-pack", "version": "0.1.0", "domain": "news" },
+  "constraints": {
+    "maxModulesAboveFold": 3,
+    "neverHide": ["story-headline"],
+    "pinned": [{ "componentId": "story-headline", "position": "top" }],
+    "allowedCategoriesBySurface": {
+      "story-feed": ["headline", "article", "list", "social"]
+    }
+  },
+  "components": [
+    {
+      "id": "story-headline",
+      "name": "Story Headline",
+      "version": "1.0.0",
+      "category": "headline",
+      "description": "The lead story headline; always present so the feed has an anchor.",
+      "intent": ["orient"],
+      "variants": [{ "id": "standard", "description": "Title + kicker." }],
+      "slots": [],
+      "data": [{ "key": "feed.title", "type": "string", "required": true }],
+      "contract": { "audience": ["*"], "surfaces": ["story-feed"], "priority": 100, "prominence": "hero" }
+    },
+    {
+      "id": "top-article",
+      "name": "Top Article",
+      "version": "1.0.0",
+      "category": "article",
+      "description": "A full article preview with summary; for readers who go deep.",
+      "intent": ["inform"],
+      "variants": [{ "id": "standard", "description": "Title + summary." }],
+      "slots": [],
+      "data": [
+        { "key": "article.title", "type": "string", "required": true },
+        { "key": "article.summary", "type": "string", "required": true }
+      ],
+      "contract": {
+        "audience": ["reader"],
+        "surfaces": ["story-feed"],
+        "showWhen": [{ "signal": "archetype.primary", "op": "eq", "value": "reader", "weight": 3 }],
+        "priority": 80,
+        "goals": ["read-through"]
+      },
+      "engagementSignal": "news.engagement.articles.readRate"
+    },
+    {
+      "id": "headline-list",
+      "name": "Headline List",
+      "version": "1.0.0",
+      "category": "list",
+      "description": "A scannable list of headlines for skimmers who want breadth.",
+      "intent": ["scan"],
+      "variants": [{ "id": "standard", "description": "Compact list." }],
+      "slots": [],
+      "data": [{ "key": "feed.headlines", "type": "series", "required": true }],
+      "contract": {
+        "audience": ["skimmer"],
+        "surfaces": ["story-feed"],
+        "showWhen": [{ "signal": "archetype.primary", "op": "eq", "value": "skimmer", "weight": 3 }],
+        "priority": 70,
+        "goals": ["scan-depth"]
+      },
+      "engagementSignal": "news.engagement.headlines.scanRate"
+    },
+    {
+      "id": "comment-thread",
+      "name": "Comment Thread",
+      "version": "1.0.0",
+      "category": "social",
+      "description": "Top comments and a reply box for users who engage in discussion.",
+      "intent": ["discuss"],
+      "variants": [{ "id": "standard", "description": "Top comments." }],
+      "slots": [],
+      "data": [{ "key": "story.comments", "type": "series", "required": true }],
+      "contract": {
+        "audience": ["commenter"],
+        "surfaces": ["story-feed"],
+        "showWhen": [{ "signal": "archetype.primary", "op": "eq", "value": "commenter", "weight": 3 }],
+        "priority": 60,
+        "goals": ["comment-rate"]
+      },
+      "engagementSignal": "news.engagement.social.commentRate"
+    }
+  ]
+}

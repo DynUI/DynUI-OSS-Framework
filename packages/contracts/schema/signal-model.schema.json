@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dynui.dev/schema/signal-model.schema.json",
+  "title": "SignalModel",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "signals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "signal": {
+                  "type": "string"
+                },
+                "weight": {
+                  "type": "number"
+                },
+                "op": {
+                  "enum": [
+                    "gt",
+                    "gte",
+                    "lt",
+                    "lte",
+                    "eq",
+                    "neq",
+                    "in",
+                    "exists"
+                  ]
+                },
+                "value": {}
+              },
+              "additionalProperties": false,
+              "required": [
+                "signal",
+                "weight"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "signals"
+        ]
+      }
+    },
+    "minEvidence": {
+      "type": "number",
+      "minimum": 0
+    },
+    "minConfidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "secondaryMinShare": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "decay": {
+      "type": "object",
+      "properties": {
+        "halfLifeMs": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "halfLifeMs"
+      ]
+    },
+    "coldStart": {
+      "type": "object",
+      "properties": {
+        "segment": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "preferenceOverride": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "path"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "domain",
+    "version",
+    "segments"
+  ]
+}

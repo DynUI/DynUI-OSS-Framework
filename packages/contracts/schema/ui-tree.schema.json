@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dynui.dev/schema/ui-tree.schema.json",
+  "title": "UITree",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "surface": {
+      "type": "string"
+    },
+    "generatedFor": {
+      "type": "object",
+      "properties": {
+        "anonId": {
+          "type": "string"
+        },
+        "archetype": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "anonId"
+      ]
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "generatedAt": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "cacheKey": {
+          "type": "string"
+        },
+        "experiments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "experimentId": {
+                "type": "string"
+              },
+              "variant": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "experimentId",
+              "variant"
+            ]
+          }
+        },
+        "fallback": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "generatedAt",
+        "model",
+        "cacheKey",
+        "fallback"
+      ]
+    },
+    "root": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "screen",
+            "section",
+            "component"
+          ]
+        },
+        "componentId": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "slots": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/UINode"
+            }
+          }
+        },
+        "props": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "dataBindings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UINode"
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "object",
+          "properties": {
+            "eligibility": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nudges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "signal": {
+                    "type": "string"
+                  },
+                  "delta": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "signal",
+                  "delta"
+                ]
+              }
+            },
+            "basePriority": {
+              "type": "number"
+            },
+            "score": {
+              "type": "number"
+            },
+            "constraints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fallbackReason": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "eligibility",
+            "nudges",
+            "basePriority",
+            "score"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "surface",
+    "generatedFor",
+    "meta",
+    "root"
+  ],
+  "$defs": {
+    "UINode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "screen",
+            "section",
+            "component"
+          ]
+        },
+        "componentId": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "slots": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/UINode"
+            }
+          }
+        },
+        "props": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "dataBindings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UINode"
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "object",
+          "properties": {
+            "eligibility": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nudges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "signal": {
+                    "type": "string"
+                  },
+                  "delta": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "signal",
+                  "delta"
+                ]
+              }
+            },
+            "basePriority": {
+              "type": "number"
+            },
+            "score": {
+              "type": "number"
+            },
+            "constraints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fallbackReason": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "eligibility",
+            "nudges",
+            "basePriority",
+            "score"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    }
+  }
+}

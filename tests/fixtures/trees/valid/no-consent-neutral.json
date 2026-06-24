@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "ui-tree/1.0",
+  "surface": "activity-detail",
+  "generatedFor": {
+    "anonId": "u_noconsent"
+  },
+  "meta": {
+    "generatedAt": "2026-06-20T00:00:00.000Z",
+    "model": "heuristic:dynui-rules",
+    "cacheKey": "{\"ctx\":{\"locale\":\"en-GB\",\"platform\":\"ios\",\"reducedMotion\":false,\"theme\":\"light\"},\"exp\":[],\"m\":\"0.1.0\",\"s\":\"activity-detail\",\"sec\":null,\"seg\":\"neutral\"}",
+    "experiments": [],
+    "fallback": false
+  },
+  "root": {
+    "type": "screen",
+    "children": [
+      {
+        "type": "section",
+        "label": "above-the-fold",
+        "children": [
+          {
+            "type": "component",
+            "componentId": "activity-headline",
+            "variant": "standard",
+            "dataBindings": {
+              "activity.title": "activity.title",
+              "activity.type": "activity.type",
+              "activity.startedAt": "activity.startedAt",
+              "activity.headlineStat": "activity.headlineStat",
+              "activity.photoUrl": "activity.photoUrl"
+            },
+            "reason": "priority 100, score 100",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:*",
+                "data:ok"
+              ],
+              "nudges": [],
+              "basePriority": 100,
+              "score": 100,
+              "constraints": [
+                "pinned:top",
+                "neverHide",
+                "above-fold"
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "insight-card",
+            "variant": "standard",
+            "dataBindings": {
+              "insight.headline": "insight.headline",
+              "insight.body": "insight.body"
+            },
+            "reason": "priority 50, score 50",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:*",
+                "data:ok"
+              ],
+              "nudges": [],
+              "basePriority": 50,
+              "score": 50,
+              "constraints": [
+                "above-fold"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "@dynui/cli",
+  "version": "0.1.0",
+  "description": "Small, file-based developer CLI for DynUI: validate and lint component manifests, and print JSON Schemas. Not a management console.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynui/dynui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/dynui/dynui/tree/main/packages/cli#readme",
+  "bugs": {
+    "url": "https://github.com/dynui/dynui/issues"
+  },
+  "type": "module",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
+  "bin": {
+    "dynui": "dist/cli.js"
+  },
+  "dependencies": {
+    "@dynui/contracts": "^0.1.0",
+    "@dynui/figma": "^0.1.0",
+    "@dynui/validate": "^0.1.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/cli.d.ts",
+      "default": "./dist/cli.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "prepublishOnly": "tsc -b"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

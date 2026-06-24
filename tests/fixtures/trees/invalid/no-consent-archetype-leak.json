@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "ui-tree/1.0",
+  "surface": "activity-detail",
+  "generatedFor": { "anonId": "u_noconsent" },
+  "meta": { "generatedAt": "2026-06-20T00:00:00.000Z", "model": "fixture:hand", "cacheKey": "k", "experiments": [], "fallback": false },
+  "root": {
+    "type": "screen",
+    "children": [
+      {
+        "type": "component",
+        "componentId": "activity-headline",
+        "variant": "standard",
+        "dataBindings": {
+          "activity.title": "activity.title",
+          "activity.type": "activity.type",
+          "activity.startedAt": "activity.startedAt",
+          "activity.headlineStat": "activity.headlineStat"
+        }
+      },
+      {
+        "type": "component",
+        "componentId": "training-load-chart",
+        "variant": "full",
+        "dataBindings": { "training.loadSeries": "training.loadSeries" }
+      }
+    ]
+  }
+}

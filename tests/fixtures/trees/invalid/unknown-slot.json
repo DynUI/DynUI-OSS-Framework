@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "ui-tree/1.0",
+  "surface": "dashboard",
+  "generatedFor": { "anonId": "u_8f3a1c" },
+  "meta": { "generatedAt": "2026-06-20T00:00:00.000Z", "model": "fixture:hand", "cacheKey": "k", "experiments": [], "fallback": false },
+  "root": {
+    "type": "screen",
+    "children": [
+      { "type": "component", "componentId": "panel-title", "variant": "standard", "dataBindings": { "title": "title" } },
+      {
+        "type": "component",
+        "componentId": "dashboard-panel",
+        "variant": "standard",
+        "slots": {
+          "body": [
+            { "type": "component", "componentId": "mini-metric", "variant": "compact", "dataBindings": { "value": "value" } }
+          ],
+          "sidebar": [
+            { "type": "component", "componentId": "mini-metric", "variant": "compact", "dataBindings": { "value": "value" } }
+          ]
+        }
+      }
+    ]
+  }
+}

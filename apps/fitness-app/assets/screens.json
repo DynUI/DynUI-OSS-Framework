@@ -1,0 +1,1178 @@
+{
+  "surface": "activity-detail",
+  "data": {
+    "_comment": "One activity's worth of resolved data — the keys component dataBindings reference. Shared by run-demo, the screen build step, and the app.",
+    "activity.title": "Morning Tempo Run",
+    "activity.type": "Run",
+    "activity.startedAt": "2026-06-19T06:30:00Z",
+    "activity.headlineStat": "10.0 km · 4:32 /km",
+    "activity.photoUrl": "https://images.example.com/run.jpg",
+    "activity.route": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          -0.12,
+          51.5
+        ],
+        [
+          -0.11,
+          51.51
+        ],
+        [
+          -0.1,
+          51.5
+        ]
+      ]
+    },
+    "activity.hrZones": [
+      6,
+      11,
+      22,
+      14,
+      5
+    ],
+    "activity.splits": [
+      {
+        "km": 1,
+        "pace": "4:41",
+        "hr": 148
+      },
+      {
+        "km": 2,
+        "pace": "4:36",
+        "hr": 154
+      },
+      {
+        "km": 3,
+        "pace": "4:33",
+        "hr": 159
+      },
+      {
+        "km": 4,
+        "pace": "4:30",
+        "hr": 162
+      },
+      {
+        "km": 5,
+        "pace": "4:28",
+        "hr": 165
+      },
+      {
+        "km": 6,
+        "pace": "4:31",
+        "hr": 164
+      },
+      {
+        "km": 7,
+        "pace": "4:27",
+        "hr": 167
+      },
+      {
+        "km": 8,
+        "pace": "4:25",
+        "hr": 170
+      },
+      {
+        "km": 9,
+        "pace": "4:22",
+        "hr": 173
+      },
+      {
+        "km": 10,
+        "pace": "4:09",
+        "hr": 178
+      }
+    ],
+    "readiness.score": 72,
+    "readiness.hrv": 64,
+    "readiness.narrative": "Well recovered — a good day to push the pace.",
+    "training.loadSeries": [
+      38,
+      41,
+      35,
+      52,
+      47,
+      44,
+      58,
+      49,
+      55,
+      61,
+      53,
+      60,
+      64,
+      57
+    ],
+    "training.acuteChronicRatio": 1.12,
+    "insight.headline": "Your easy pace is getting easier",
+    "insight.body": "Same heart rate as a month ago, but 8s/km faster. Aerobic base is building.",
+    "social.kudosCount": 14,
+    "social.comments": [
+      {
+        "author": "Sam R.",
+        "text": "Strong negative split!"
+      },
+      {
+        "author": "Mia T.",
+        "text": "That last km though 🔥"
+      }
+    ],
+    "social.segments": [
+      {
+        "name": "Riverside Mile",
+        "rank": 3,
+        "total": 128
+      },
+      {
+        "name": "Bridge Sprint",
+        "rank": 11,
+        "total": 542
+      },
+      {
+        "name": "Park Loop",
+        "rank": 1,
+        "total": 87
+      }
+    ],
+    "strength.volumeByGroup": [
+      {
+        "group": "Legs",
+        "volume": 820
+      },
+      {
+        "group": "Glutes",
+        "volume": 610
+      },
+      {
+        "group": "Core",
+        "volume": 340
+      },
+      {
+        "group": "Calves",
+        "volume": 280
+      }
+    ]
+  },
+  "screens": {
+    "performanceAthlete": {
+      "schemaVersion": "ui-tree/1.0",
+      "surface": "activity-detail",
+      "generatedFor": {
+        "anonId": "u_8f3a1c",
+        "archetype": "performance"
+      },
+      "meta": {
+        "generatedAt": "2026-06-22T06:59:20.155Z",
+        "model": "heuristic:dynui-rules",
+        "cacheKey": "{\"ctx\":{\"locale\":\"en-GB\",\"platform\":\"ios\",\"reducedMotion\":false,\"theme\":\"dark\"},\"exp\":[],\"m\":\"0.1.0\",\"s\":\"activity-detail\",\"sec\":\"social\",\"seg\":\"performance\"}",
+        "experiments": [],
+        "fallback": false
+      },
+      "root": {
+        "type": "screen",
+        "children": [
+          {
+            "type": "section",
+            "label": "above-the-fold",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "activity-headline",
+                "variant": "standard",
+                "dataBindings": {
+                  "activity.title": "activity.title",
+                  "activity.type": "activity.type",
+                  "activity.startedAt": "activity.startedAt",
+                  "activity.headlineStat": "activity.headlineStat",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 100, score 100",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 100,
+                  "score": 100,
+                  "constraints": [
+                    "pinned:top",
+                    "neverHide",
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "training-load-chart",
+                "variant": "full",
+                "dataBindings": {
+                  "training.loadSeries": "training.loadSeries",
+                  "training.acuteChronicRatio": "training.acuteChronicRatio"
+                },
+                "reason": "priority 75, score 125; matched archetype.primary, behavior.fitness.engagement.charts.openRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 30
+                    },
+                    {
+                      "signal": "behavior.fitness.engagement.charts.openRate",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 75,
+                  "score": 125,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "recovery-score-card",
+                "variant": "expanded",
+                "dataBindings": {
+                  "readiness.score": "readiness.score",
+                  "readiness.hrv": "readiness.hrv",
+                  "readiness.narrative": "readiness.narrative"
+                },
+                "reason": "priority 80, score 90; matched behavior.fitness.engagement.insights.readRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "behavior.fitness.engagement.insights.readRate",
+                      "delta": 10
+                    }
+                  ],
+                  "basePriority": 80,
+                  "score": 90,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "section",
+            "label": "details",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "social-kudos-bar",
+                "variant": "standard",
+                "dataBindings": {
+                  "social.kudosCount": "social.kudosCount",
+                  "social.comments": "social.comments"
+                },
+                "reason": "priority 65, score 85; matched behavior.fitness.engagement.social.kudosRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:social",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "behavior.fitness.engagement.social.kudosRate",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 65,
+                  "score": 85
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "split-table",
+                "variant": "full",
+                "dataBindings": {
+                  "activity.splits": "activity.splits"
+                },
+                "reason": "priority 55, score 85; matched archetype.primary",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 30
+                    }
+                  ],
+                  "basePriority": 55,
+                  "score": 85
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "hr-zone-breakdown",
+                "variant": "bars",
+                "dataBindings": {
+                  "activity.hrZones": "activity.hrZones"
+                },
+                "reason": "priority 60, score 80; matched preferences.fitness.primaryMetric",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "preferences.fitness.primaryMetric",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 60,
+                  "score": 80
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "route-map-hero",
+                "variant": "map-photo",
+                "dataBindings": {
+                  "activity.route": "activity.route",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 70, score 70",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:social",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 70,
+                  "score": 70
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "insight-card",
+                "variant": "standard",
+                "dataBindings": {
+                  "insight.headline": "insight.headline",
+                  "insight.body": "insight.body"
+                },
+                "reason": "priority 50, score 60; matched behavior.fitness.engagement.insights.readRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "behavior.fitness.engagement.insights.readRate",
+                      "delta": 10
+                    }
+                  ],
+                  "basePriority": 50,
+                  "score": 60
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "segment-leaderboard",
+                "variant": "standard",
+                "dataBindings": {
+                  "social.segments": "social.segments"
+                },
+                "reason": "priority 45, score 45",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 45,
+                  "score": 45
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "casualWellness": {
+      "schemaVersion": "ui-tree/1.0",
+      "surface": "activity-detail",
+      "generatedFor": {
+        "anonId": "u_2b9d44",
+        "archetype": "wellness"
+      },
+      "meta": {
+        "generatedAt": "2026-06-22T06:59:20.157Z",
+        "model": "heuristic:dynui-rules",
+        "cacheKey": "{\"ctx\":{\"locale\":\"en-GB\",\"platform\":\"ios\",\"reducedMotion\":true,\"theme\":\"light\"},\"exp\":[],\"m\":\"0.1.0\",\"s\":\"activity-detail\",\"sec\":null,\"seg\":\"wellness\"}",
+        "experiments": [],
+        "fallback": false
+      },
+      "root": {
+        "type": "screen",
+        "children": [
+          {
+            "type": "section",
+            "label": "above-the-fold",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "activity-headline",
+                "variant": "standard",
+                "dataBindings": {
+                  "activity.title": "activity.title",
+                  "activity.type": "activity.type",
+                  "activity.startedAt": "activity.startedAt",
+                  "activity.headlineStat": "activity.headlineStat",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 100, score 100",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 100,
+                  "score": 100,
+                  "constraints": [
+                    "pinned:top",
+                    "neverHide",
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "recovery-score-card",
+                "variant": "expanded",
+                "dataBindings": {
+                  "readiness.score": "readiness.score",
+                  "readiness.hrv": "readiness.hrv",
+                  "readiness.narrative": "readiness.narrative"
+                },
+                "reason": "priority 80, score 120; matched archetype.primary, behavior.fitness.engagement.insights.readRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:wellness",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 30
+                    },
+                    {
+                      "signal": "behavior.fitness.engagement.insights.readRate",
+                      "delta": 10
+                    }
+                  ],
+                  "basePriority": 80,
+                  "score": 120,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "route-map-hero",
+                "variant": "map-photo",
+                "dataBindings": {
+                  "activity.route": "activity.route",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 70, score 90; matched archetype.primary",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:wellness",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 70,
+                  "score": 90,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "section",
+            "label": "details",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "insight-card",
+                "variant": "standard",
+                "dataBindings": {
+                  "insight.headline": "insight.headline",
+                  "insight.body": "insight.body"
+                },
+                "reason": "priority 50, score 60; matched behavior.fitness.engagement.insights.readRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "behavior.fitness.engagement.insights.readRate",
+                      "delta": 10
+                    }
+                  ],
+                  "basePriority": 50,
+                  "score": 60
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "socialCompetitive": {
+      "schemaVersion": "ui-tree/1.0",
+      "surface": "activity-detail",
+      "generatedFor": {
+        "anonId": "u_77fe10",
+        "archetype": "social"
+      },
+      "meta": {
+        "generatedAt": "2026-06-22T06:59:20.157Z",
+        "model": "heuristic:dynui-rules",
+        "cacheKey": "{\"ctx\":{\"locale\":\"en-GB\",\"platform\":\"ios\",\"reducedMotion\":false,\"theme\":\"dark\"},\"exp\":[],\"m\":\"0.1.0\",\"s\":\"activity-detail\",\"sec\":\"performance\",\"seg\":\"social\"}",
+        "experiments": [],
+        "fallback": false
+      },
+      "root": {
+        "type": "screen",
+        "children": [
+          {
+            "type": "section",
+            "label": "above-the-fold",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "activity-headline",
+                "variant": "standard",
+                "dataBindings": {
+                  "activity.title": "activity.title",
+                  "activity.type": "activity.type",
+                  "activity.startedAt": "activity.startedAt",
+                  "activity.headlineStat": "activity.headlineStat",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 100, score 100",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 100,
+                  "score": 100,
+                  "constraints": [
+                    "pinned:top",
+                    "neverHide",
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "social-kudos-bar",
+                "variant": "standard",
+                "dataBindings": {
+                  "social.kudosCount": "social.kudosCount",
+                  "social.comments": "social.comments"
+                },
+                "reason": "priority 65, score 115; matched archetype.primary, behavior.fitness.engagement.social.kudosRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:social",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 30
+                    },
+                    {
+                      "signal": "behavior.fitness.engagement.social.kudosRate",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 65,
+                  "score": 115,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "route-map-hero",
+                "variant": "map-photo",
+                "dataBindings": {
+                  "activity.route": "activity.route",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 70, score 90; matched archetype.primary",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:social",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 70,
+                  "score": 90,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "section",
+            "label": "details",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "recovery-score-card",
+                "variant": "expanded",
+                "dataBindings": {
+                  "readiness.score": "readiness.score",
+                  "readiness.hrv": "readiness.hrv",
+                  "readiness.narrative": "readiness.narrative"
+                },
+                "reason": "priority 80, score 80",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 80,
+                  "score": 80
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "training-load-chart",
+                "variant": "full",
+                "dataBindings": {
+                  "training.loadSeries": "training.loadSeries",
+                  "training.acuteChronicRatio": "training.acuteChronicRatio"
+                },
+                "reason": "priority 75, score 75",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 75,
+                  "score": 75
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "segment-leaderboard",
+                "variant": "standard",
+                "dataBindings": {
+                  "social.segments": "social.segments"
+                },
+                "reason": "priority 45, score 65; matched archetype.primary",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:social",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 45,
+                  "score": 65
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "hr-zone-breakdown",
+                "variant": "bars",
+                "dataBindings": {
+                  "activity.hrZones": "activity.hrZones"
+                },
+                "reason": "priority 60, score 60",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 60,
+                  "score": 60
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "split-table",
+                "variant": "full",
+                "dataBindings": {
+                  "activity.splits": "activity.splits"
+                },
+                "reason": "priority 55, score 55",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 55,
+                  "score": 55
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "insight-card",
+                "variant": "standard",
+                "dataBindings": {
+                  "insight.headline": "insight.headline",
+                  "insight.body": "insight.body"
+                },
+                "reason": "priority 50, score 50",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 50,
+                  "score": 50
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "performanceCanary": {
+      "schemaVersion": "ui-tree/1.0",
+      "surface": "activity-detail",
+      "generatedFor": {
+        "anonId": "u_8f3a1c",
+        "archetype": "performance"
+      },
+      "meta": {
+        "generatedAt": "2026-06-22T06:59:20.157Z",
+        "model": "heuristic:dynui-rules",
+        "cacheKey": "{\"ctx\":{\"locale\":\"en-GB\",\"platform\":\"ios\",\"reducedMotion\":false,\"theme\":\"dark\"},\"exp\":[\"exp.strength-volume:treatment\"],\"m\":\"0.1.0\",\"s\":\"activity-detail\",\"sec\":\"social\",\"seg\":\"performance\"}",
+        "experiments": [
+          {
+            "experimentId": "exp.strength-volume",
+            "variant": "treatment"
+          }
+        ],
+        "fallback": false
+      },
+      "root": {
+        "type": "screen",
+        "children": [
+          {
+            "type": "section",
+            "label": "above-the-fold",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "activity-headline",
+                "variant": "standard",
+                "dataBindings": {
+                  "activity.title": "activity.title",
+                  "activity.type": "activity.type",
+                  "activity.startedAt": "activity.startedAt",
+                  "activity.headlineStat": "activity.headlineStat",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 100, score 100",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 100,
+                  "score": 100,
+                  "constraints": [
+                    "pinned:top",
+                    "neverHide",
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "training-load-chart",
+                "variant": "full",
+                "dataBindings": {
+                  "training.loadSeries": "training.loadSeries",
+                  "training.acuteChronicRatio": "training.acuteChronicRatio"
+                },
+                "reason": "priority 75, score 125; matched archetype.primary, behavior.fitness.engagement.charts.openRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 30
+                    },
+                    {
+                      "signal": "behavior.fitness.engagement.charts.openRate",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 75,
+                  "score": 125,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "strength-volume-card",
+                "variant": "standard",
+                "dataBindings": {
+                  "strength.volumeByGroup": "strength.volumeByGroup"
+                },
+                "reason": "priority 72, score 92; matched archetype.primary",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 72,
+                  "score": 92,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "section",
+            "label": "details",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "recovery-score-card",
+                "variant": "expanded",
+                "dataBindings": {
+                  "readiness.score": "readiness.score",
+                  "readiness.hrv": "readiness.hrv",
+                  "readiness.narrative": "readiness.narrative"
+                },
+                "reason": "priority 80, score 90; matched behavior.fitness.engagement.insights.readRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "behavior.fitness.engagement.insights.readRate",
+                      "delta": 10
+                    }
+                  ],
+                  "basePriority": 80,
+                  "score": 90
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "social-kudos-bar",
+                "variant": "standard",
+                "dataBindings": {
+                  "social.kudosCount": "social.kudosCount",
+                  "social.comments": "social.comments"
+                },
+                "reason": "priority 65, score 85; matched behavior.fitness.engagement.social.kudosRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:social",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "behavior.fitness.engagement.social.kudosRate",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 65,
+                  "score": 85
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "split-table",
+                "variant": "full",
+                "dataBindings": {
+                  "activity.splits": "activity.splits"
+                },
+                "reason": "priority 55, score 85; matched archetype.primary",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "archetype.primary",
+                      "delta": 30
+                    }
+                  ],
+                  "basePriority": 55,
+                  "score": 85
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "hr-zone-breakdown",
+                "variant": "bars",
+                "dataBindings": {
+                  "activity.hrZones": "activity.hrZones"
+                },
+                "reason": "priority 60, score 80; matched preferences.fitness.primaryMetric",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "preferences.fitness.primaryMetric",
+                      "delta": 20
+                    }
+                  ],
+                  "basePriority": 60,
+                  "score": 80
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "route-map-hero",
+                "variant": "map-photo",
+                "dataBindings": {
+                  "activity.route": "activity.route",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 70, score 70",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:social",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 70,
+                  "score": 70
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "insight-card",
+                "variant": "standard",
+                "dataBindings": {
+                  "insight.headline": "insight.headline",
+                  "insight.body": "insight.body"
+                },
+                "reason": "priority 50, score 60; matched behavior.fitness.engagement.insights.readRate",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [
+                    {
+                      "signal": "behavior.fitness.engagement.insights.readRate",
+                      "delta": 10
+                    }
+                  ],
+                  "basePriority": 50,
+                  "score": 60
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "segment-leaderboard",
+                "variant": "standard",
+                "dataBindings": {
+                  "social.segments": "social.segments"
+                },
+                "reason": "priority 45, score 45",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:performance",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 45,
+                  "score": 45
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "default": {
+      "schemaVersion": "ui-tree/1.0",
+      "surface": "activity-detail",
+      "generatedFor": {
+        "anonId": "new-user"
+      },
+      "meta": {
+        "generatedAt": "2026-06-22T06:59:20.157Z",
+        "model": "heuristic:dynui-rules",
+        "cacheKey": "{\"ctx\":{\"locale\":\"en-GB\",\"platform\":\"ios\",\"reducedMotion\":false,\"theme\":\"dark\"},\"exp\":[],\"m\":\"0.1.0\",\"s\":\"activity-detail\",\"sec\":null,\"seg\":\"neutral\"}",
+        "experiments": [],
+        "fallback": false
+      },
+      "root": {
+        "type": "screen",
+        "children": [
+          {
+            "type": "section",
+            "label": "above-the-fold",
+            "children": [
+              {
+                "type": "component",
+                "componentId": "activity-headline",
+                "variant": "standard",
+                "dataBindings": {
+                  "activity.title": "activity.title",
+                  "activity.type": "activity.type",
+                  "activity.startedAt": "activity.startedAt",
+                  "activity.headlineStat": "activity.headlineStat",
+                  "activity.photoUrl": "activity.photoUrl"
+                },
+                "reason": "priority 100, score 100",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 100,
+                  "score": 100,
+                  "constraints": [
+                    "pinned:top",
+                    "neverHide",
+                    "above-fold"
+                  ]
+                }
+              },
+              {
+                "type": "component",
+                "componentId": "insight-card",
+                "variant": "standard",
+                "dataBindings": {
+                  "insight.headline": "insight.headline",
+                  "insight.body": "insight.body"
+                },
+                "reason": "priority 50, score 50",
+                "explanation": {
+                  "eligibility": [
+                    "surface:activity-detail",
+                    "audience:*",
+                    "data:ok"
+                  ],
+                  "nudges": [],
+                  "basePriority": 50,
+                  "score": 50,
+                  "constraints": [
+                    "above-fold"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "signalMap": {
+    "recovery-score-card": "fitness.engagement.insights.readRate",
+    "training-load-chart": "fitness.engagement.charts.openRate",
+    "hr-zone-breakdown": "fitness.engagement.charts.openRate",
+    "split-table": "fitness.engagement.charts.openRate",
+    "route-map-hero": "fitness.engagement.insights.readRate",
+    "insight-card": "fitness.engagement.insights.readRate",
+    "social-kudos-bar": "fitness.engagement.social.kudosRate",
+    "segment-leaderboard": "fitness.engagement.social.kudosRate",
+    "strength-volume-card": "fitness.engagement.charts.openRate"
+  }
+}

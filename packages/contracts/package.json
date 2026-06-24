@@ -1,0 +1,38 @@
+{
+  "name": "@dynui/contracts",
+  "version": "0.1.0",
+  "description": "Canonical contracts for the DynUI personalization framework: SignalProfile, ComponentManifest, UITree, ModelProvider.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynui/dynui.git",
+    "directory": "packages/contracts"
+  },
+  "homepage": "https://github.com/dynui/dynui/tree/main/packages/contracts#readme",
+  "bugs": {
+    "url": "https://github.com/dynui/dynui/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "schema"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -b",
+    "prepublishOnly": "tsc -b"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schema/*.json": "./schema/*.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false
+}

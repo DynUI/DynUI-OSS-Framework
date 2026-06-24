@@ -1,0 +1,45 @@
+{
+  "_comment": "One activity's worth of resolved data — the keys component dataBindings reference. Shared by run-demo, the screen build step, and the app.",
+  "activity.title": "Morning Tempo Run",
+  "activity.type": "Run",
+  "activity.startedAt": "2026-06-19T06:30:00Z",
+  "activity.headlineStat": "10.0 km · 4:32 /km",
+  "activity.photoUrl": "https://images.example.com/run.jpg",
+  "activity.route": { "type": "LineString", "coordinates": [[-0.12, 51.50], [-0.11, 51.51], [-0.10, 51.50]] },
+  "activity.hrZones": [6, 11, 22, 14, 5],
+  "activity.splits": [
+    { "km": 1, "pace": "4:41", "hr": 148 },
+    { "km": 2, "pace": "4:36", "hr": 154 },
+    { "km": 3, "pace": "4:33", "hr": 159 },
+    { "km": 4, "pace": "4:30", "hr": 162 },
+    { "km": 5, "pace": "4:28", "hr": 165 },
+    { "km": 6, "pace": "4:31", "hr": 164 },
+    { "km": 7, "pace": "4:27", "hr": 167 },
+    { "km": 8, "pace": "4:25", "hr": 170 },
+    { "km": 9, "pace": "4:22", "hr": 173 },
+    { "km": 10, "pace": "4:09", "hr": 178 }
+  ],
+  "readiness.score": 72,
+  "readiness.hrv": 64,
+  "readiness.narrative": "Well recovered — a good day to push the pace.",
+  "training.loadSeries": [38, 41, 35, 52, 47, 44, 58, 49, 55, 61, 53, 60, 64, 57],
+  "training.acuteChronicRatio": 1.12,
+  "insight.headline": "Your easy pace is getting easier",
+  "insight.body": "Same heart rate as a month ago, but 8s/km faster. Aerobic base is building.",
+  "social.kudosCount": 14,
+  "social.comments": [
+    { "author": "Sam R.", "text": "Strong negative split!" },
+    { "author": "Mia T.", "text": "That last km though 🔥" }
+  ],
+  "social.segments": [
+    { "name": "Riverside Mile", "rank": 3, "total": 128 },
+    { "name": "Bridge Sprint", "rank": 11, "total": 542 },
+    { "name": "Park Loop", "rank": 1, "total": 87 }
+  ],
+  "strength.volumeByGroup": [
+    { "group": "Legs", "volume": 820 },
+    { "group": "Glutes", "volume": 610 },
+    { "group": "Core", "volume": 340 },
+    { "group": "Calves", "volume": 280 }
+  ]
+}

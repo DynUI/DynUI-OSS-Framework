@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "ui-tree/1.0",
+  "surface": "activity-detail",
+  "generatedFor": {
+    "anonId": "u_8f3a1c",
+    "archetype": "performance"
+  },
+  "meta": {
+    "generatedAt": "2026-06-20T00:00:00.000Z",
+    "model": "heuristic:dynui-rules",
+    "cacheKey": "{\"ctx\":{\"locale\":\"en-GB\",\"platform\":\"ios\",\"reducedMotion\":false,\"theme\":\"dark\"},\"exp\":[\"exp.strength-volume:treatment\"],\"m\":\"0.1.0\",\"s\":\"activity-detail\",\"sec\":\"social\",\"seg\":\"performance\"}",
+    "experiments": [
+      {
+        "experimentId": "exp.strength-volume",
+        "variant": "treatment"
+      }
+    ],
+    "fallback": false
+  },
+  "root": {
+    "type": "screen",
+    "children": [
+      {
+        "type": "section",
+        "label": "above-the-fold",
+        "children": [
+          {
+            "type": "component",
+            "componentId": "activity-headline",
+            "variant": "standard",
+            "dataBindings": {
+              "activity.title": "activity.title",
+              "activity.type": "activity.type",
+              "activity.startedAt": "activity.startedAt",
+              "activity.headlineStat": "activity.headlineStat",
+              "activity.photoUrl": "activity.photoUrl"
+            },
+            "reason": "priority 100, score 100",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:*",
+                "data:ok"
+              ],
+              "nudges": [],
+              "basePriority": 100,
+              "score": 100,
+              "constraints": [
+                "pinned:top",
+                "neverHide",
+                "above-fold"
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "training-load-chart",
+            "variant": "full",
+            "dataBindings": {
+              "training.loadSeries": "training.loadSeries",
+              "training.acuteChronicRatio": "training.acuteChronicRatio"
+            },
+            "reason": "priority 75, score 125; matched archetype.primary, behavior.fitness.engagement.charts.openRate",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:performance",
+                "data:ok"
+              ],
+              "nudges": [
+                {
+                  "signal": "archetype.primary",
+                  "delta": 30
+                },
+                {
+                  "signal": "behavior.fitness.engagement.charts.openRate",
+                  "delta": 20
+                }
+              ],
+              "basePriority": 75,
+              "score": 125,
+              "constraints": [
+                "above-fold"
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "strength-volume-card",
+            "variant": "standard",
+            "dataBindings": {
+              "strength.volumeByGroup": "strength.volumeByGroup"
+            },
+            "reason": "priority 72, score 92; matched archetype.primary",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:performance",
+                "data:ok"
+              ],
+              "nudges": [
+                {
+                  "signal": "archetype.primary",
+                  "delta": 20
+                }
+              ],
+              "basePriority": 72,
+              "score": 92,
+              "constraints": [
+                "above-fold"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "label": "details",
+        "children": [
+          {
+            "type": "component",
+            "componentId": "recovery-score-card",
+            "variant": "expanded",
+            "dataBindings": {
+              "readiness.score": "readiness.score",
+              "readiness.hrv": "readiness.hrv",
+              "readiness.narrative": "readiness.narrative"
+            },
+            "reason": "priority 80, score 90; matched behavior.fitness.engagement.insights.readRate",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:performance",
+                "data:ok"
+              ],
+              "nudges": [
+                {
+                  "signal": "behavior.fitness.engagement.insights.readRate",
+                  "delta": 10
+                }
+              ],
+              "basePriority": 80,
+              "score": 90
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "social-kudos-bar",
+            "variant": "standard",
+            "dataBindings": {
+              "social.kudosCount": "social.kudosCount",
+              "social.comments": "social.comments"
+            },
+            "reason": "priority 65, score 85; matched behavior.fitness.engagement.social.kudosRate",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:social",
+                "data:ok"
+              ],
+              "nudges": [
+                {
+                  "signal": "behavior.fitness.engagement.social.kudosRate",
+                  "delta": 20
+                }
+              ],
+              "basePriority": 65,
+              "score": 85
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "split-table",
+            "variant": "full",
+            "dataBindings": {
+              "activity.splits": "activity.splits"
+            },
+            "reason": "priority 55, score 85; matched archetype.primary",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:performance",
+                "data:ok"
+              ],
+              "nudges": [
+                {
+                  "signal": "archetype.primary",
+                  "delta": 30
+                }
+              ],
+              "basePriority": 55,
+              "score": 85
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "hr-zone-breakdown",
+            "variant": "bars",
+            "dataBindings": {
+              "activity.hrZones": "activity.hrZones"
+            },
+            "reason": "priority 60, score 80; matched preferences.fitness.primaryMetric",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:performance",
+                "data:ok"
+              ],
+              "nudges": [
+                {
+                  "signal": "preferences.fitness.primaryMetric",
+                  "delta": 20
+                }
+              ],
+              "basePriority": 60,
+              "score": 80
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "route-map-hero",
+            "variant": "map-photo",
+            "dataBindings": {
+              "activity.route": "activity.route",
+              "activity.photoUrl": "activity.photoUrl"
+            },
+            "reason": "priority 70, score 70",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:social",
+                "data:ok"
+              ],
+              "nudges": [],
+              "basePriority": 70,
+              "score": 70
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "insight-card",
+            "variant": "standard",
+            "dataBindings": {
+              "insight.headline": "insight.headline",
+              "insight.body": "insight.body"
+            },
+            "reason": "priority 50, score 60; matched behavior.fitness.engagement.insights.readRate",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:*",
+                "data:ok"
+              ],
+              "nudges": [
+                {
+                  "signal": "behavior.fitness.engagement.insights.readRate",
+                  "delta": 10
+                }
+              ],
+              "basePriority": 50,
+              "score": 60
+            }
+          },
+          {
+            "type": "component",
+            "componentId": "segment-leaderboard",
+            "variant": "standard",
+            "dataBindings": {
+              "social.segments": "social.segments"
+            },
+            "reason": "priority 45, score 45",
+            "explanation": {
+              "eligibility": [
+                "surface:activity-detail",
+                "audience:performance",
+                "data:ok"
+              ],
+              "nudges": [],
+              "basePriority": 45,
+              "score": 45
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

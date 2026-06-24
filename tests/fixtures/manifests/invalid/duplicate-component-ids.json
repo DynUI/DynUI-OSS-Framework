@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "component-manifest/1.0",
+  "registry": { "name": "broken-pack", "version": "0.1.0" },
+  "constraints": {},
+  "components": [
+    {
+      "id": "dup",
+      "name": "First",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "First component claiming the id.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "standard", "description": "x" }],
+      "slots": [],
+      "data": [],
+      "contract": { "audience": ["*"], "surfaces": ["s"], "priority": 10 }
+    },
+    {
+      "id": "dup",
+      "name": "Second",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "Second component reusing the same id — must be rejected.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "standard", "description": "x" }],
+      "slots": [],
+      "data": [],
+      "contract": { "audience": ["*"], "surfaces": ["s"], "priority": 10 }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "signal-profile/1.0",
+  "subject": { "anonId": "u_2b9d44" },
+  "consent": { "personalization": true, "analytics": true, "modelTraining": false },
+  "context": {
+    "timestamp": "2026-06-19T18:10:00Z",
+    "locale": "en-GB",
+    "timezone": "Europe/London",
+    "surface": "activity-detail",
+    "device": { "platform": "ios", "theme": "light", "reducedMotion": true },
+    "session": { "isNew": false, "count": 23 }
+  },
+  "preferences": { "ui.density": "comfortable", "fitness.primaryMetric": "pace" },
+  "traits": { "fitness.experienceLevel": "beginner" },
+  "archetype": { "primary": "wellness", "confidence": 0.84 },
+  "behavior": {
+    "fitness.engagement.charts.openRate": 0.06,
+    "fitness.engagement.insights.readRate": 0.55,
+    "fitness.engagement.social.kudosRate": 0.03,
+    "fitness.training.weeklyLoadKm": 9,
+    "fitness.usage.logsPerWeek": 2
+  },
+  "cohorts": []
+}

@@ -1,0 +1,42 @@
+{
+  "name": "dynui",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynui/dynui.git"
+  },
+  "homepage": "https://github.com/dynui/dynui#readme",
+  "bugs": {
+    "url": "https://github.com/dynui/dynui/issues"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "demo": "tsx examples/run-demo.ts",
+    "demo:experiment": "tsx examples/experiment-demo.ts",
+    "demo:behavior": "tsx examples/behavior-demo.ts",
+    "demo:persist": "tsx examples/persist-demo.ts",
+    "demo:figma": "tsx examples/figma-demo.ts",
+    "demo:no-model": "tsx examples/no-model-demo.ts",
+    "gen:screens": "tsx scripts/generate-screens.ts",
+    "gen:schema": "tsx scripts/gen-json-schema.ts",
+    "lint:manifest": "tsx scripts/lint-manifest.ts",
+    "dynui": "tsx packages/cli/src/cli.ts",
+    "gen:verify": "tsx examples/verify-generation.ts",
+    "eval:contracts": "tsx eval/contracts.ts",
+    "eval:generation": "tsx eval/generation.ts",
+    "test": "node --import tsx --test \"tests/**/*.test.ts\"",
+    "test:visual": "tsx scripts/visual/test-visual.ts",
+    "build": "tsc -b tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "smoke": "node scripts/smoke/run-smoke.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "playwright": "^1.61.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

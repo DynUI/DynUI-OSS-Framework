@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "signal-profile/1.0",
+  "subject": { "anonId": "u_cold01" },
+  "consent": { "personalization": true, "analytics": true, "modelTraining": true },
+  "context": {
+    "timestamp": "2026-06-20T09:00:00Z",
+    "locale": "en-GB",
+    "timezone": "Europe/London",
+    "surface": "activity-detail",
+    "device": { "platform": "ios", "theme": "light", "reducedMotion": false },
+    "session": { "isNew": true, "count": 1 }
+  },
+  "preferences": {},
+  "traits": {},
+  "behavior": {},
+  "cohorts": []
+}

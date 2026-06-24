@@ -1,0 +1,1018 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dynui.dev/schema/generation-request.schema.json",
+  "title": "GenerationRequest",
+  "type": "object",
+  "properties": {
+    "surface": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "object",
+          "properties": {
+            "anonId": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "anonId"
+          ]
+        },
+        "consent": {
+          "type": "object",
+          "properties": {
+            "personalization": {
+              "type": "boolean"
+            },
+            "analytics": {
+              "type": "boolean"
+            },
+            "modelTraining": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "personalization",
+            "analytics",
+            "modelTraining"
+          ]
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "timestamp": {
+              "type": "string"
+            },
+            "locale": {
+              "type": "string"
+            },
+            "timezone": {
+              "type": "string"
+            },
+            "surface": {
+              "type": "string"
+            },
+            "device": {
+              "type": "object",
+              "properties": {
+                "platform": {
+                  "enum": [
+                    "ios",
+                    "android",
+                    "web"
+                  ]
+                },
+                "theme": {
+                  "enum": [
+                    "light",
+                    "dark"
+                  ]
+                },
+                "reducedMotion": {
+                  "type": "boolean"
+                },
+                "viewport": {
+                  "type": "object",
+                  "properties": {
+                    "width": {
+                      "type": "number"
+                    },
+                    "height": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "width",
+                    "height"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "platform"
+              ]
+            },
+            "session": {
+              "type": "object",
+              "properties": {
+                "isNew": {
+                  "type": "boolean"
+                },
+                "count": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "isNew",
+                "count"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "timestamp",
+            "locale",
+            "timezone",
+            "surface",
+            "device",
+            "session"
+          ]
+        },
+        "preferences": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "traits": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "archetype": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "secondary": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "primary",
+            "confidence"
+          ]
+        },
+        "behavior": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "cohorts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "subject",
+        "consent",
+        "context",
+        "preferences",
+        "traits",
+        "behavior"
+      ]
+    },
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "type": "string"
+        },
+        "registry": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+            },
+            "domain": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "version"
+          ]
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string",
+                "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
+              },
+              "figmaNodeId": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "intent": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "variants": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "description"
+                  ]
+                }
+              },
+              "slots": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "accepts": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "id",
+                    "accepts",
+                    "required",
+                    "description"
+                  ]
+                }
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "series",
+                        "geojson",
+                        "object",
+                        "any"
+                      ]
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "key",
+                    "type",
+                    "required"
+                  ]
+                }
+              },
+              "contract": {
+                "type": "object",
+                "properties": {
+                  "audience": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "surfaces": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "showWhen": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "signal": {
+                          "type": "string"
+                        },
+                        "op": {
+                          "enum": [
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "eq",
+                            "neq",
+                            "in",
+                            "exists"
+                          ]
+                        },
+                        "value": {},
+                        "weight": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "signal",
+                        "op"
+                      ]
+                    }
+                  },
+                  "hideWhen": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "signal": {
+                          "type": "string"
+                        },
+                        "op": {
+                          "enum": [
+                            "gt",
+                            "gte",
+                            "lt",
+                            "lte",
+                            "eq",
+                            "neq",
+                            "in",
+                            "exists"
+                          ]
+                        },
+                        "value": {},
+                        "weight": {
+                          "type": "number"
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "signal",
+                        "op"
+                      ]
+                    }
+                  },
+                  "priority": {
+                    "type": "number"
+                  },
+                  "prominence": {
+                    "enum": [
+                      "hero",
+                      "primary",
+                      "secondary",
+                      "tertiary"
+                    ]
+                  },
+                  "goals": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "audience",
+                  "surfaces",
+                  "priority"
+                ]
+              },
+              "props": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "series",
+                        "geojson",
+                        "object",
+                        "any"
+                      ]
+                    },
+                    "required": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "name",
+                    "type"
+                  ]
+                }
+              },
+              "a11y": {
+                "type": "object",
+                "properties": {
+                  "interactive": {
+                    "type": "boolean"
+                  },
+                  "requiresLabel": {
+                    "type": "boolean"
+                  },
+                  "reducedMotionSafe": {
+                    "type": "boolean"
+                  },
+                  "requiresTextFallback": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "engagementSignal": {
+                "type": "string"
+              },
+              "experiment": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "enableForVariant": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "enableForVariant"
+                ]
+              },
+              "owner": {
+                "type": "string"
+              },
+              "deprecated": {
+                "type": "boolean"
+              },
+              "replacedBy": {
+                "type": "string"
+              },
+              "minRendererVersion": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "name",
+              "version",
+              "category",
+              "description",
+              "intent",
+              "variants",
+              "slots",
+              "data",
+              "contract"
+            ]
+          }
+        },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "maxModulesAboveFold": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "neverHide": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "pinned": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "componentId": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "enum": [
+                      "top",
+                      "bottom"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "componentId",
+                  "position"
+                ]
+              }
+            },
+            "stableAnchors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "allowedCategoriesBySurface": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "maxDepth": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "maxComponents": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "singletons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "tokens": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "requiredTokens": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "registry",
+        "components",
+        "constraints"
+      ]
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "maxModulesAboveFold": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "neverHide": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pinned": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "componentId": {
+                "type": "string"
+              },
+              "position": {
+                "enum": [
+                  "top",
+                  "bottom"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "componentId",
+              "position"
+            ]
+          }
+        },
+        "stableAnchors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowedCategoriesBySurface": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "maxDepth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxComponents": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "singletons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "experimentId": {
+            "type": "string"
+          },
+          "variant": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "experimentId",
+          "variant"
+        ]
+      }
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number"
+        },
+        "maxOutputTokens": {
+          "type": "integer"
+        },
+        "seedTree": {
+          "type": "object",
+          "properties": {
+            "schemaVersion": {
+              "type": "string"
+            },
+            "surface": {
+              "type": "string"
+            },
+            "generatedFor": {
+              "type": "object",
+              "properties": {
+                "anonId": {
+                  "type": "string"
+                },
+                "archetype": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "anonId"
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "properties": {
+                "generatedAt": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "cacheKey": {
+                  "type": "string"
+                },
+                "experiments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "experimentId": {
+                        "type": "string"
+                      },
+                      "variant": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "experimentId",
+                      "variant"
+                    ]
+                  }
+                },
+                "fallback": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "generatedAt",
+                "model",
+                "cacheKey",
+                "fallback"
+              ]
+            },
+            "root": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "enum": [
+                    "screen",
+                    "section",
+                    "component"
+                  ]
+                },
+                "componentId": {
+                  "type": "string"
+                },
+                "variant": {
+                  "type": "string"
+                },
+                "slots": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/UINode"
+                    }
+                  }
+                },
+                "props": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "dataBindings": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/UINode"
+                  }
+                },
+                "label": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "object",
+                  "properties": {
+                    "eligibility": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "nudges": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "signal": {
+                            "type": "string"
+                          },
+                          "delta": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false,
+                        "required": [
+                          "signal",
+                          "delta"
+                        ]
+                      }
+                    },
+                    "basePriority": {
+                      "type": "number"
+                    },
+                    "score": {
+                      "type": "number"
+                    },
+                    "constraints": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "fallbackReason": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "eligibility",
+                    "nudges",
+                    "basePriority",
+                    "score"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "type"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "schemaVersion",
+            "surface",
+            "generatedFor",
+            "meta",
+            "root"
+          ]
+        },
+        "repairErrors": {
+          "type": "array",
+          "items": {}
+        },
+        "fallbackData": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "surface",
+    "profile",
+    "manifest",
+    "constraints",
+    "experiments",
+    "data"
+  ],
+  "$defs": {
+    "UINode": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "screen",
+            "section",
+            "component"
+          ]
+        },
+        "componentId": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        },
+        "slots": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/UINode"
+            }
+          }
+        },
+        "props": {
+          "type": "object",
+          "additionalProperties": {}
+        },
+        "dataBindings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UINode"
+          }
+        },
+        "label": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "object",
+          "properties": {
+            "eligibility": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nudges": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "signal": {
+                    "type": "string"
+                  },
+                  "delta": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "signal",
+                  "delta"
+                ]
+              }
+            },
+            "basePriority": {
+              "type": "number"
+            },
+            "score": {
+              "type": "number"
+            },
+            "constraints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fallbackReason": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "eligibility",
+            "nudges",
+            "basePriority",
+            "score"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    }
+  }
+}
