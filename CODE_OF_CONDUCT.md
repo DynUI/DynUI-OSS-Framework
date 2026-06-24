@@ -38,7 +38,7 @@ Examples of behavior that is not acceptable:
 ## Reporting
 
 If you experience or witness unacceptable behavior, report it to the maintainers
-at **langiakash@gmail.com**. If the issue is also a security or privacy concern,
+at **EMAIL**. If the issue is also a security or privacy concern,
 follow the private reporting path in [SECURITY.md](SECURITY.md).
 
 Please include as much context as you can safely share:
