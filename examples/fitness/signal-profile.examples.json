@@ -1,0 +1,78 @@
+{
+  "_comment": "Three archetype profiles for the same surface (activity-detail). Same activity, three very different users -> three different generated screens.",
+
+  "performanceAthlete": {
+    "schemaVersion": "signal-profile/1.0",
+    "subject": { "anonId": "u_8f3a1c" },
+    "consent": { "personalization": true, "analytics": true, "modelTraining": true },
+    "context": {
+      "timestamp": "2026-06-19T06:42:00Z",
+      "locale": "en-GB",
+      "timezone": "Europe/London",
+      "surface": "activity-detail",
+      "device": { "platform": "ios", "theme": "dark", "reducedMotion": false },
+      "session": { "isNew": false, "count": 412 }
+    },
+    "preferences": { "ui.density": "compact", "fitness.primaryMetric": "heartRate" },
+    "traits": { "fitness.experienceLevel": "advanced" },
+    "archetype": { "primary": "performance", "confidence": 0.91, "secondary": "social" },
+    "behavior": {
+      "fitness.engagement.charts.openRate": 0.78,
+      "fitness.engagement.insights.readRate": 0.41,
+      "fitness.engagement.social.kudosRate": 0.22,
+      "fitness.training.weeklyLoadKm": 72,
+      "fitness.usage.logsPerWeek": 6
+    },
+    "cohorts": []
+  },
+
+  "casualWellness": {
+    "schemaVersion": "signal-profile/1.0",
+    "subject": { "anonId": "u_2b9d44" },
+    "consent": { "personalization": true, "analytics": true, "modelTraining": false },
+    "context": {
+      "timestamp": "2026-06-19T18:10:00Z",
+      "locale": "en-GB",
+      "timezone": "Europe/London",
+      "surface": "activity-detail",
+      "device": { "platform": "ios", "theme": "light", "reducedMotion": true },
+      "session": { "isNew": false, "count": 23 }
+    },
+    "preferences": { "ui.density": "comfortable", "fitness.primaryMetric": "pace" },
+    "traits": { "fitness.experienceLevel": "beginner" },
+    "archetype": { "primary": "wellness", "confidence": 0.84 },
+    "behavior": {
+      "fitness.engagement.charts.openRate": 0.06,
+      "fitness.engagement.insights.readRate": 0.55,
+      "fitness.engagement.social.kudosRate": 0.03,
+      "fitness.training.weeklyLoadKm": 9,
+      "fitness.usage.logsPerWeek": 2
+    },
+    "cohorts": []
+  },
+
+  "socialCompetitive": {
+    "schemaVersion": "signal-profile/1.0",
+    "subject": { "anonId": "u_77fe10" },
+    "consent": { "personalization": true, "analytics": true, "modelTraining": true },
+    "context": {
+      "timestamp": "2026-06-19T12:05:00Z",
+      "locale": "en-GB",
+      "timezone": "Europe/London",
+      "surface": "activity-detail",
+      "device": { "platform": "ios", "theme": "dark", "reducedMotion": false },
+      "session": { "isNew": false, "count": 156 }
+    },
+    "preferences": { "ui.density": "comfortable", "fitness.primaryMetric": "pace" },
+    "traits": { "fitness.experienceLevel": "intermediate" },
+    "archetype": { "primary": "social", "confidence": 0.88, "secondary": "performance" },
+    "behavior": {
+      "fitness.engagement.charts.openRate": 0.31,
+      "fitness.engagement.insights.readRate": 0.18,
+      "fitness.engagement.social.kudosRate": 0.64,
+      "fitness.training.weeklyLoadKm": 34,
+      "fitness.usage.logsPerWeek": 4
+    },
+    "cohorts": ["exp.training-load-widget:control"]
+  }
+}

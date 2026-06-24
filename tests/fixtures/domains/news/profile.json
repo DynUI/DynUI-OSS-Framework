@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "signal-profile/1.0",
+  "subject": { "anonId": "anon_news_1" },
+  "consent": { "personalization": true, "analytics": true, "modelTraining": false },
+  "context": {
+    "timestamp": "2026-06-20T08:00:00Z",
+    "locale": "en-US",
+    "timezone": "America/New_York",
+    "surface": "story-feed",
+    "device": { "platform": "android", "theme": "light" },
+    "session": { "isNew": false, "count": 30 }
+  },
+  "preferences": {},
+  "traits": { "news.tenure": "regular" },
+  "behavior": {
+    "news.engagement.articles.readRate": 0.72,
+    "news.engagement.headlines.scanRate": 0.2,
+    "news.engagement.social.commentRate": 0.08
+  },
+  "cohorts": []
+}

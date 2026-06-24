@@ -1,0 +1,22 @@
+{
+  "name": "Broken Kit",
+  "document": { "type": "DOCUMENT", "children": [] },
+  "components": {
+    "9:1": {
+      "name": "Broken Card",
+      "description": "A card.\n```dynui\n{ \"category\": \"metric\", bad json, }\n```"
+    },
+    "9:2": {
+      "name": "Recovery Score",
+      "description": "```dynui\n{ \"id\": \"dup-card\", \"category\": \"metric\" }\n```"
+    },
+    "9:3": {
+      "name": "Another One",
+      "description": "```dynui\n{ \"id\": \"dup-card\", \"category\": \"chart\" }\n```"
+    },
+    "9:4": {
+      "name": "No Category Card",
+      "description": "```dynui\n{ \"audience\": [\"performance\"] }\n```"
+    }
+  }
+}

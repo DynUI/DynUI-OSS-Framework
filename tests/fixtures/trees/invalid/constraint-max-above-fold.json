@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "ui-tree/1.0",
+  "surface": "activity-detail",
+  "generatedFor": { "anonId": "u_8f3a1c", "archetype": "performance" },
+  "meta": { "generatedAt": "2026-06-20T00:00:00.000Z", "model": "fixture:hand", "cacheKey": "k", "experiments": [], "fallback": false },
+  "root": {
+    "type": "screen",
+    "children": [
+      {
+        "type": "section",
+        "label": "above-the-fold",
+        "children": [
+          {
+            "type": "component",
+            "componentId": "activity-headline",
+            "variant": "standard",
+            "dataBindings": {
+              "activity.title": "activity.title",
+              "activity.type": "activity.type",
+              "activity.startedAt": "activity.startedAt",
+              "activity.headlineStat": "activity.headlineStat"
+            }
+          },
+          { "type": "component", "componentId": "recovery-score-card", "variant": "expanded", "dataBindings": { "readiness.score": "readiness.score" } },
+          { "type": "component", "componentId": "hr-zone-breakdown", "variant": "bars", "dataBindings": { "activity.hrZones": "activity.hrZones" } },
+          { "type": "component", "componentId": "insight-card", "variant": "standard", "dataBindings": { "insight.headline": "insight.headline", "insight.body": "insight.body" } }
+        ]
+      }
+    ]
+  }
+}

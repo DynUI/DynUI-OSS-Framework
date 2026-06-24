@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "component-manifest/1.0",
+  "registry": {
+    "name": "slots-pack",
+    "version": "0.1.0",
+    "domain": "test"
+  },
+  "constraints": {
+    "neverHide": ["panel-title"],
+    "pinned": [{ "componentId": "panel-title", "position": "top" }],
+    "allowedCategoriesBySurface": {
+      "dashboard": ["headline", "container", "metric", "chart"]
+    }
+  },
+  "components": [
+    {
+      "id": "panel-title",
+      "name": "Panel Title",
+      "version": "1.0.0",
+      "category": "headline",
+      "description": "The dashboard's headline. Always present so the screen has an anchor.",
+      "intent": ["orient"],
+      "variants": [{ "id": "standard", "description": "Title only." }],
+      "slots": [],
+      "data": [{ "key": "title", "type": "string", "required": true }],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 100,
+        "prominence": "hero",
+        "goals": []
+      }
+    },
+    {
+      "id": "dashboard-panel",
+      "name": "Dashboard Panel",
+      "version": "1.0.0",
+      "category": "container",
+      "description": "A composing container. Holds a required body metric and an optional footer. Exercises nested slot rendering.",
+      "intent": ["group"],
+      "variants": [{ "id": "standard", "description": "Default framing." }],
+      "slots": [
+        {
+          "id": "body",
+          "accepts": ["metric"],
+          "required": true,
+          "description": "The primary metric shown inside the panel."
+        },
+        {
+          "id": "footer",
+          "accepts": ["*"],
+          "required": false,
+          "description": "Optional supporting content of any category."
+        }
+      ],
+      "data": [],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 80,
+        "prominence": "primary",
+        "goals": []
+      }
+    },
+    {
+      "id": "mini-metric",
+      "name": "Mini Metric",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "A single-number metric tile, valid inside the panel body.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "compact", "description": "Number + label." }],
+      "slots": [],
+      "data": [{ "key": "value", "type": "number", "required": true }],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 60,
+        "prominence": "secondary",
+        "goals": []
+      }
+    },
+    {
+      "id": "mini-chart",
+      "name": "Mini Chart",
+      "version": "1.0.0",
+      "category": "chart",
+      "description": "A small trend chart. Surface-allowed but NOT accepted by the panel body (which only accepts metrics).",
+      "intent": ["analyze"],
+      "variants": [{ "id": "sparkline", "description": "Compact trend." }],
+      "slots": [],
+      "data": [{ "key": "series", "type": "series", "required": true }],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 50,
+        "prominence": "tertiary",
+        "goals": []
+      }
+    }
+  ]
+}

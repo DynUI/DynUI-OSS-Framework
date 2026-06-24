@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "component-manifest/1.0",
+  "registry": { "name": "broken-pack", "version": "0.1.0" },
+  "constraints": {
+    "neverHide": ["ghost"],
+    "pinned": [{ "componentId": "also-missing", "position": "top" }]
+  },
+  "components": [
+    {
+      "id": "real-card",
+      "name": "Real Card",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "The only real component; constraints reference ids that do not exist.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "standard", "description": "x" }],
+      "slots": [],
+      "data": [],
+      "contract": { "audience": ["*"], "surfaces": ["s"], "priority": 10 }
+    }
+  ]
+}

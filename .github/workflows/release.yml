@@ -1,0 +1,79 @@
+name: Release
+
+# Publishes the public @dynui/* packages to npm from CI (never from a developer
+# laptop). Triggered by publishing a GitHub Release, or manually via workflow_dispatch.
+#
+# Trust & supply chain — this workflow commits to TOKENLESS TRUSTED PUBLISHING:
+#   - no long-lived npm token is used (no NPM_TOKEN). Authentication is a short-lived
+#     OIDC token (id-token: write) exchanged by the npm CLI;
+#   - provenance attestations are generated automatically by trusted publishing, so
+#     artifacts are attestable;
+#   - the npm CLI path for trusted publishing requires npm >= 11.5.1 and Node >= 22.14,
+#     so the publish job runs on Node 24 and upgrades npm to the latest;
+#   - it requires the package `repository` field to match the EXACT GitHub repo URL
+#     (set on every packages/*/package.json) and the workflow to be registered as a
+#     trusted publisher for each package on npmjs.com;
+#   - the publish job is gated behind the protected `release` environment (configure
+#     required reviewers and a tag restriction in repo Settings → Environments).
+#
+# To use token-based publishing instead, set an NPM_TOKEN secret ON THE `release`
+# ENVIRONMENT, add `env: { NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} }` to the publish
+# step, and pass `--provenance` explicitly. Do not mix the two.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Pack only, do not publish"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify before release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run gen:schema -- --check
+      - run: npm run build
+      - run: npm run smoke
+
+  publish:
+    name: publish to npm
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: release # protected: required reviewers / tag restrictions
+    permissions:
+      contents: read
+      id-token: write # OIDC for trusted publishing + provenance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # >= 22.14 required for the npm trusted-publishing CLI path
+          registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@latest # ensure npm >= 11.5.1 for trusted publishing
+      - run: npm ci || npm install
+      - run: npm run build
+      - name: Publish (tokenless trusted publishing + auto provenance)
+        if: ${{ github.event_name == 'release' || inputs.dry_run == false }}
+        # No NODE_AUTH_TOKEN: npm exchanges the OIDC id-token for a short-lived
+        # publish credential and attaches provenance automatically.
+        run: npm publish --workspaces --access public
+      - name: Dry run (pack only)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
+        run: npm pack --workspaces

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "signal-model/1.0",
+  "domain": "news",
+  "version": "0.1.0",
+  "minConfidence": 0.4,
+  "secondaryMinShare": 0.6,
+  "minEvidence": 0.05,
+  "coldStart": { "segment": "skimmer" },
+  "preferenceOverride": { "path": "preferences.news.persona" },
+  "segments": [
+    { "id": "skimmer", "signals": [{ "signal": "behavior.news.engagement.headlines.scanRate", "weight": 1 }] },
+    { "id": "reader", "signals": [{ "signal": "behavior.news.engagement.articles.readRate", "weight": 1.2 }] },
+    { "id": "commenter", "signals": [{ "signal": "behavior.news.engagement.social.commentRate", "weight": 1 }] }
+  ]
+}

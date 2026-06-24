@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "DynUI Fitness",
+    "slug": "dynui-fitness",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F4F1EA",
+    "ios": { "supportsTablet": true },
+    "android": {},
+    "web": { "bundler": "metro" }
+  }
+}

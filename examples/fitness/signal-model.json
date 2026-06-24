@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "signal-model/1.0",
+  "domain": "fitness",
+  "version": "1.0.0",
+  "minConfidence": 0.4,
+  "secondaryMinShare": 0.5,
+  "decay": { "halfLifeMs": 1209600000 },
+  "preferenceOverride": { "path": "preferences.fitness.segment" },
+  "segments": [
+    { "id": "performance", "signals": [{ "signal": "behavior.fitness.engagement.charts.openRate", "weight": 1 }] },
+    { "id": "wellness", "signals": [{ "signal": "behavior.fitness.engagement.insights.readRate", "weight": 1 }] },
+    { "id": "social", "signals": [{ "signal": "behavior.fitness.engagement.social.kudosRate", "weight": 1 }] }
+  ]
+}

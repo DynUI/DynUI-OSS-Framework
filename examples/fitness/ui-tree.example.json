@@ -1,0 +1,80 @@
+{
+  "_comment": "Example VALIDATED UITree generated for the performanceAthlete profile on activity-detail. Note: headline pinned top (constraint), data-dense components chosen, social demoted, every componentId/variant exists in manifest.example.json.",
+  "schemaVersion": "ui-tree/1.0",
+  "surface": "activity-detail",
+  "generatedFor": { "anonId": "u_8f3a1c", "archetype": "performance" },
+  "meta": {
+    "generatedAt": "2026-06-19T06:42:01Z",
+    "model": "anthropic:claude-opus-4-8",
+    "cacheKey": "activity-detail|performance|ios-dark|hasSegments",
+    "experiments": [],
+    "fallback": false
+  },
+  "root": {
+    "type": "screen",
+    "children": [
+      {
+        "type": "section",
+        "label": "above-the-fold",
+        "children": [
+          {
+            "type": "component",
+            "componentId": "activity-headline",
+            "variant": "standard",
+            "dataBindings": {
+              "title": "activity.title",
+              "type": "activity.type",
+              "startedAt": "activity.startedAt",
+              "headlineStat": "activity.headlineStat"
+            },
+            "reason": "Always-present anchor, pinned top per constraints."
+          },
+          {
+            "type": "component",
+            "componentId": "training-load-chart",
+            "variant": "full",
+            "dataBindings": {
+              "series": "training.loadSeries",
+              "ratio": "training.acuteChronicRatio"
+            },
+            "reason": "archetype=performance (w3) + charts.openRate 0.78 >= 0.5 (w2)."
+          },
+          {
+            "type": "component",
+            "componentId": "hr-zone-breakdown",
+            "variant": "bars",
+            "dataBindings": { "series": "activity.hrZones" },
+            "reason": "preferences.fitness.primaryMetric == heartRate (w2)."
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "label": "details",
+        "children": [
+          {
+            "type": "component",
+            "componentId": "split-table",
+            "variant": "full",
+            "dataBindings": { "rows": "activity.splits" },
+            "reason": "Performance user wants per-lap depth."
+          },
+          {
+            "type": "component",
+            "componentId": "insight-card",
+            "variant": "standard",
+            "dataBindings": { "headline": "insight.headline", "body": "insight.body" },
+            "reason": "insights.readRate 0.41 >= 0.2; adds coaching context."
+          },
+          {
+            "type": "component",
+            "componentId": "segment-leaderboard",
+            "variant": "standard",
+            "dataBindings": { "rows": "social.segments" },
+            "reason": "secondary archetype=social; demoted below performance content."
+          }
+        ]
+      }
+    ]
+  }
+}

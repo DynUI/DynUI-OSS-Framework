@@ -1,0 +1,38 @@
+{
+  "name": "@dynui/signal",
+  "version": "0.1.0",
+  "description": "DynUI signal evaluation: resolve signal-path conditions against a SignalProfile for generation and experiments.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynui/dynui.git",
+    "directory": "packages/signal"
+  },
+  "homepage": "https://github.com/dynui/dynui/tree/main/packages/signal#readme",
+  "bugs": {
+    "url": "https://github.com/dynui/dynui/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@dynui/contracts": "^0.1.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "prepublishOnly": "tsc -b"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false
+}

@@ -1,0 +1,39 @@
+{
+  "name": "@dynui/experiments",
+  "version": "0.1.0",
+  "description": "DynUI component-level experimentation: deterministic assignment, exposure/goal logging, and promote/rollback analysis over external engines.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynui/dynui.git",
+    "directory": "packages/experiments"
+  },
+  "homepage": "https://github.com/dynui/dynui/tree/main/packages/experiments#readme",
+  "bugs": {
+    "url": "https://github.com/dynui/dynui/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@dynui/contracts": "^0.1.0",
+    "@dynui/signal": "^0.1.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "prepublishOnly": "tsc -b"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false
+}

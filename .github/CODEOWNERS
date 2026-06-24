@@ -1,0 +1,20 @@
+# Default ownership for the repository.
+* @akashlangi
+
+# Community and repository governance.
+/CODE_OF_CONDUCT.md @akashlangi
+/CONTRIBUTING.md @akashlangi
+/SECURITY.md @akashlangi
+/TRADEMARKS.md @akashlangi
+/.github/ @akashlangi
+
+# Public packages.
+/packages/ @akashlangi
+/package.json @akashlangi
+/package-lock.json @akashlangi
+
+# Documentation, examples, and release notes.
+/README.md @akashlangi
+/CHANGELOG.md @akashlangi
+/docs/ @akashlangi
+/examples/ @akashlangi

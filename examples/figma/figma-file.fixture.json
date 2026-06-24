@@ -1,0 +1,71 @@
+{
+  "name": "Fitness Kit",
+  "document": {
+    "type": "DOCUMENT",
+    "children": [
+      {
+        "type": "CANVAS",
+        "name": "Components",
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "@dynui/config",
+            "characters": "{\"name\":\"fitness-pack\",\"version\":\"0.1.0\",\"domain\":\"fitness\",\"constraints\":{\"maxModulesAboveFold\":3,\"neverHide\":[\"activity-headline\"],\"pinned\":[{\"componentId\":\"activity-headline\",\"position\":\"top\"}],\"allowedCategoriesBySurface\":{\"activity-detail\":[\"headline\",\"metric\",\"chart\",\"insight\"]}},\"tokens\":{\"color.accent\":\"#4F8DFD\"}}"
+          },
+          {
+            "type": "COMPONENT",
+            "id": "1:1",
+            "name": "Activity Headline"
+          },
+          {
+            "type": "COMPONENT_SET",
+            "id": "2:1",
+            "name": "Training Load Chart",
+            "children": [
+              {
+                "type": "COMPONENT",
+                "id": "2:2",
+                "name": "Variant=sparkline"
+              },
+              {
+                "type": "COMPONENT",
+                "id": "2:3",
+                "name": "Variant=full"
+              }
+            ]
+          },
+          {
+            "type": "COMPONENT",
+            "id": "3:1",
+            "name": "Strength Volume Card"
+          },
+          {
+            "type": "COMPONENT",
+            "id": "4:1",
+            "name": "Insight Card"
+          }
+        ]
+      }
+    ]
+  },
+  "components": {
+    "1:1": {
+      "name": "Activity Headline",
+      "description": "Component shown in Figma.\n\n```dynui\n{\n  \"category\": \"headline\",\n  \"audience\": [\n    \"*\"\n  ],\n  \"surfaces\": [\n    \"activity-detail\"\n  ],\n  \"intent\": [\n    \"orient\"\n  ],\n  \"priority\": 100,\n  \"prominence\": \"hero\",\n  \"data\": [\n    {\n      \"key\": \"activity.title\",\n      \"type\": \"string\",\n      \"required\": true\n    },\n    {\n      \"key\": \"activity.headlineStat\",\n      \"type\": \"string\",\n      \"required\": true\n    }\n  ]\n}\n```"
+    },
+    "3:1": {
+      "name": "Strength Volume Card",
+      "description": "Component shown in Figma.\n\n```dynui\n{\n  \"category\": \"metric\",\n  \"audience\": [\n    \"performance\"\n  ],\n  \"surfaces\": [\n    \"activity-detail\"\n  ],\n  \"intent\": [\n    \"analyze-strength\"\n  ],\n  \"priority\": 72,\n  \"prominence\": \"primary\",\n  \"data\": [\n    {\n      \"key\": \"strength.volumeByGroup\",\n      \"type\": \"series\",\n      \"required\": true\n    }\n  ],\n  \"experiment\": {\n    \"id\": \"exp.strength-volume\",\n    \"enableForVariant\": \"treatment\"\n  }\n}\n```"
+    },
+    "4:1": {
+      "name": "Insight Card",
+      "description": "Component shown in Figma.\n\n```dynui\n{\n  \"category\": \"insight\",\n  \"audience\": [\n    \"*\"\n  ],\n  \"surfaces\": [\n    \"activity-detail\"\n  ],\n  \"intent\": [\n    \"motivate\"\n  ],\n  \"priority\": 50,\n  \"prominence\": \"secondary\",\n  \"data\": [\n    {\n      \"key\": \"insight.headline\",\n      \"type\": \"string\",\n      \"required\": true\n    },\n    {\n      \"key\": \"insight.body\",\n      \"type\": \"string\",\n      \"required\": true\n    }\n  ]\n}\n```"
+    }
+  },
+  "componentSets": {
+    "2:1": {
+      "name": "Training Load Chart",
+      "description": "Component shown in Figma.\n\n```dynui\n{\n  \"category\": \"chart\",\n  \"audience\": [\n    \"performance\"\n  ],\n  \"surfaces\": [\n    \"activity-detail\"\n  ],\n  \"intent\": [\n    \"analyze-load\"\n  ],\n  \"priority\": 75,\n  \"prominence\": \"primary\",\n  \"showWhen\": [\n    {\n      \"signal\": \"archetype.primary\",\n      \"op\": \"eq\",\n      \"value\": \"performance\",\n      \"weight\": 3\n    }\n  ],\n  \"data\": [\n    {\n      \"key\": \"training.loadSeries\",\n      \"type\": \"series\",\n      \"required\": true\n    }\n  ],\n  \"engagementSignal\": \"fitness.engagement.charts.openRate\"\n}\n```"
+    }
+  }
+}

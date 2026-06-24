@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Packages declare engines.node >=20, so test the declared minimum AND
+        # current stable. Do not test only a version newer than the minimum.
+        node: [20, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run gen:schema -- --check # fail if JSON Schema artifacts are stale
+      - run: npm run lint:manifest
+      - run: npm run eval:contracts
+      - run: npm run eval:generation # live model skipped without API keys
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium # browser for the visual suite
+      - run: npm run test:visual # browser-based renderer proof (skips if no browser)
+
+  smoke:
+    name: package publish smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20 # prove the declared minimum can consume the packed tarballs
+      - run: npm install
+      # Builds, packs every public package, installs the tarballs in a clean consumer
+      # project, and runs the minimal adoption flow (no model key, no provider SDK).
+      - run: npm run smoke
+
+  dependency-review:
+    name: dependency review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "component-manifest/1.0",
+  "registry": { "name": "a11y-props-pack", "version": "0.1.0", "domain": "test" },
+  "constraints": {
+    "neverHide": ["title-card"],
+    "pinned": [{ "componentId": "title-card", "position": "top" }],
+    "allowedCategoriesBySurface": {
+      "panel": ["headline", "action", "media", "metric"]
+    }
+  },
+  "components": [
+    {
+      "id": "title-card",
+      "name": "Title Card",
+      "version": "1.0.0",
+      "category": "headline",
+      "description": "Always-present panel headline.",
+      "intent": ["orient"],
+      "variants": [{ "id": "standard", "description": "Title." }],
+      "slots": [],
+      "data": [{ "key": "title", "type": "string", "required": true }],
+      "contract": { "audience": ["*"], "surfaces": ["panel"], "priority": 100 }
+    },
+    {
+      "id": "action-button",
+      "name": "Action Button",
+      "version": "1.0.0",
+      "category": "action",
+      "description": "An interactive button. Requires an accessibility label and only the declared 'href' prop.",
+      "intent": ["act"],
+      "variants": [{ "id": "standard", "description": "Default." }],
+      "slots": [],
+      "data": [{ "key": "label.text", "type": "string", "required": false }],
+      "contract": { "audience": ["*"], "surfaces": ["panel"], "priority": 70 },
+      "props": [{ "name": "href", "type": "string" }],
+      "a11y": { "interactive": true, "requiresLabel": true }
+    },
+    {
+      "id": "motion-banner",
+      "name": "Motion Banner",
+      "version": "1.0.0",
+      "category": "media",
+      "description": "An animated banner that is NOT safe under reduced motion.",
+      "intent": ["delight"],
+      "variants": [{ "id": "standard", "description": "Default." }],
+      "slots": [],
+      "data": [{ "key": "media.url", "type": "string", "required": true }],
+      "contract": { "audience": ["*"], "surfaces": ["panel"], "priority": 60 },
+      "a11y": { "reducedMotionSafe": false }
+    },
+    {
+      "id": "text-tile",
+      "name": "Text Tile",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "A metric tile that must carry a text fallback for screen readers.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "standard", "description": "Default." }],
+      "slots": [],
+      "data": [
+        { "key": "tile.value", "type": "number", "required": true },
+        { "key": "tile.caption", "type": "string", "required": false }
+      ],
+      "contract": { "audience": ["*"], "surfaces": ["panel"], "priority": 50 },
+      "a11y": { "requiresTextFallback": true }
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://dynui.dev/schema/signal-profile.schema.json",
+  "title": "SignalProfile",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "anonId": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "anonId"
+      ]
+    },
+    "consent": {
+      "type": "object",
+      "properties": {
+        "personalization": {
+          "type": "boolean"
+        },
+        "analytics": {
+          "type": "boolean"
+        },
+        "modelTraining": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "personalization",
+        "analytics",
+        "modelTraining"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "surface": {
+          "type": "string"
+        },
+        "device": {
+          "type": "object",
+          "properties": {
+            "platform": {
+              "enum": [
+                "ios",
+                "android",
+                "web"
+              ]
+            },
+            "theme": {
+              "enum": [
+                "light",
+                "dark"
+              ]
+            },
+            "reducedMotion": {
+              "type": "boolean"
+            },
+            "viewport": {
+              "type": "object",
+              "properties": {
+                "width": {
+                  "type": "number"
+                },
+                "height": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "width",
+                "height"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "platform"
+          ]
+        },
+        "session": {
+          "type": "object",
+          "properties": {
+            "isNew": {
+              "type": "boolean"
+            },
+            "count": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "isNew",
+            "count"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "timestamp",
+        "locale",
+        "timezone",
+        "surface",
+        "device",
+        "session"
+      ]
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "traits": {
+      "type": "object",
+      "additionalProperties": {}
+    },
+    "archetype": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "secondary": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "confidence"
+      ]
+    },
+    "behavior": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "cohorts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "subject",
+    "consent",
+    "context",
+    "preferences",
+    "traits",
+    "behavior"
+  ]
+}
