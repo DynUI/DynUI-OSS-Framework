@@ -23,7 +23,7 @@ consumer apps, marketplaces, media products, health and fitness apps, fintech
 dashboards, developer tools, internal workflow software, and any product where two
 valuable users should not necessarily see the same screen.
 
-![DynUI fitness demo screenshot](docs/assets/fitness-demo-desktop.png)
+![DynUI fitness mobile demo screenshot](docs/assets/fitness-demo-mobile.png)
 
 Why teams adopt this shape:
 

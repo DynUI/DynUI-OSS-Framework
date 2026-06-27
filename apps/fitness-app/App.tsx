@@ -141,7 +141,12 @@ export default function App() {
         </View>
       </View>
 
-      <View style={s.switcher}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={s.switcher}
+        contentContainerStyle={s.switcherContent}
+      >
         {TABS.map((t) => {
           const active = t.key === selected;
           return (
@@ -154,7 +159,7 @@ export default function App() {
             </Pressable>
           );
         })}
-      </View>
+      </ScrollView>
 
       <View style={s.reasonsToggle}>
         <Text style={s.reasonsLabel}>Tap cards to log behavior · show reasons</Text>
@@ -221,17 +226,21 @@ const s = StyleSheet.create({
   bannerMeta: { fontSize: theme.font.caption, color: theme.color.muted, flex: 1 },
   reset: { fontSize: theme.font.caption, color: theme.color.warm, fontWeight: "700" },
   switcher: {
-    flexDirection: "row",
     marginHorizontal: theme.space(4),
     backgroundColor: "#EAE5DA",
     borderRadius: theme.radius.pill,
-    padding: 4,
+    flexGrow: 0,
+    maxHeight: 48,
   },
+  switcherContent: { gap: 4, alignItems: "center", padding: 4 },
   seg: {
-    flex: 1,
-    paddingVertical: theme.space(2),
+    minWidth: 112,
+    minHeight: 36,
+    paddingVertical: 8,
+    paddingHorizontal: theme.space(3),
     borderRadius: theme.radius.pill,
     alignItems: "center",
+    justifyContent: "center",
   },
   segActive: { backgroundColor: theme.color.card },
   segText: { fontSize: theme.font.caption, color: theme.color.muted, fontWeight: "600" },
