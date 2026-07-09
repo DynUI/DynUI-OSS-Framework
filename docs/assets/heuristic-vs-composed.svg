@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <title id="t">Heuristic vs. composed dashboard screens</title>
+  <desc id="d">Two dashboard screens generated from the same component vocabulary. The deterministic engine alone leaves the readiness panel an empty frame with its metrics scattered flat; with an LLM composing, the same metrics are nested inside one coherent readiness panel. Both pass the same validator.</desc>
+  <style>
+    .p{fill:#2C2C2A}.s{fill:#5F5E5A}.m{fill:#888780}
+    .num{fill:#2C2C2A;font-weight:600}
+    text{font-size:13px}
+  </style>
+
+  <rect x="0" y="0" width="900" height="620" rx="16" fill="#F1EFE8"/>
+
+  <!-- ── Left: deterministic ───────────────────────────────────────────── -->
+  <text x="86" y="46" class="p" font-size="16" font-weight="600">Deterministic engine only</text>
+  <text x="86" y="66" class="m">ranks and places — 0 nested, 5 flat modules</text>
+
+  <rect x="70" y="80" width="340" height="480" rx="18" fill="#FFFFFF" stroke="#DAD8CF"/>
+  <text x="86" y="112" class="m" font-size="11">9:41</text>
+  <text x="394" y="112" class="m" font-size="11" text-anchor="end">Dashboard</text>
+
+  <rect x="86" y="120" width="308" height="58" rx="12" fill="none" stroke="#B4B2A9" stroke-dasharray="4 3"/>
+  <text x="100" y="143" class="p" font-weight="600">Readiness</text>
+  <text x="100" y="163" class="m" font-size="11" font-style="italic">empty frame — the engine never fills a slot</text>
+
+  <rect x="86" y="188" width="308" height="46" rx="8" fill="#F1EFE8"/>
+  <text x="100" y="206" class="s" font-size="12">HRV</text>
+  <text x="100" y="228" class="num" font-size="20">68</text>
+
+  <rect x="86" y="242" width="308" height="46" rx="8" fill="#F1EFE8"/>
+  <text x="100" y="260" class="s" font-size="12">Strain</text>
+  <text x="100" y="282" class="num" font-size="20">14.2</text>
+
+  <line x1="86" y1="305" x2="200" y2="305" stroke="#DAD8CF"/>
+  <text x="240" y="309" class="m" font-size="11" text-anchor="middle">details</text>
+  <line x1="280" y1="305" x2="394" y2="305" stroke="#DAD8CF"/>
+
+  <rect x="86" y="320" width="308" height="46" rx="8" fill="#F1EFE8"/>
+  <text x="100" y="338" class="s" font-size="12">Sleep</text>
+  <text x="100" y="360" class="num" font-size="20">7.4<tspan class="m" font-size="12" font-weight="400"> h</tspan></text>
+
+  <rect x="86" y="374" width="308" height="70" rx="8" fill="#F1EFE8"/>
+  <text x="100" y="393" class="s" font-size="12">Load trend</text>
+  <polyline points="100,432 147,417 193,438 240,402 287,409 333,420 380,414" fill="none" stroke="#5F5E5A" stroke-width="1.5"/>
+
+  <!-- ── Right: composed ───────────────────────────────────────────────── -->
+  <text x="506" y="46" class="p" font-size="16" font-weight="600">With LLM composing</text>
+  <text x="506" y="66" fill="#185FA5">composes — 4 nested inside 1 panel</text>
+
+  <rect x="490" y="80" width="340" height="480" rx="18" fill="#FFFFFF" stroke="#DAD8CF"/>
+  <text x="506" y="112" class="m" font-size="11">9:41</text>
+  <text x="814" y="112" class="m" font-size="11" text-anchor="end">Dashboard</text>
+
+  <rect x="506" y="120" width="308" height="215" rx="12" fill="#FFFFFF" stroke="#378ADD"/>
+  <circle cx="524" cy="141" r="4" fill="#378ADD"/>
+  <text x="536" y="146" class="p" font-weight="600">Readiness</text>
+
+  <line x1="609" y1="162" x2="609" y2="216" stroke="#E3E1D8"/>
+  <line x1="711" y1="162" x2="711" y2="216" stroke="#E3E1D8"/>
+  <text x="557" y="182" class="s" font-size="11" text-anchor="middle">HRV</text>
+  <text x="557" y="206" class="num" font-size="19" text-anchor="middle">68</text>
+  <text x="660" y="182" class="s" font-size="11" text-anchor="middle">Strain</text>
+  <text x="660" y="206" class="num" font-size="19" text-anchor="middle">14.2</text>
+  <text x="763" y="182" class="s" font-size="11" text-anchor="middle">Sleep</text>
+  <text x="763" y="206" class="num" font-size="19" text-anchor="middle">7.4</text>
+
+  <line x1="520" y1="235" x2="800" y2="235" stroke="#E3E1D8"/>
+  <text x="520" y="256" class="s" font-size="12">Load trend · 7d</text>
+  <polyline points="520,300 567,285 613,306 660,270 707,277 753,288 800,282" fill="none" stroke="#185FA5" stroke-width="1.5"/>
+
+  <text x="660" y="360" class="m" font-size="11" text-anchor="middle">arranged as designed</text>
+
+  <text x="450" y="600" class="s" font-size="12" text-anchor="middle">Both screens pass the identical validateRenderableTree gate. The only difference is composition.</text>
+</svg>

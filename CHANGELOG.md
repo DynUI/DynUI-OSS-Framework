@@ -11,6 +11,13 @@ see [docs/UPGRADE.md](docs/UPGRADE.md) for the compatibility policy.
 
 ### Added
 
+- Heuristic-ceiling example (`examples/ceiling/`, `npm run demo:ceiling`) and a
+  README section ("Where a model earns its place, above the heuristic") showing what an
+  optional model adds over the deterministic engine: the heuristic ranks and lays out
+  components in flat sections but never fills a slot, so it cannot nest or group; with an
+  LLM composing, the same vocabulary is arranged into a nested panel — validated against
+  the identical safety boundary. Includes a side-by-side diagram
+  (`docs/assets/heuristic-vs-composed.svg`).
 - Public repository hygiene: `SECURITY.md`, `CONTRIBUTING.md`,
   `GOVERNANCE.md`, `CODE_OF_CONDUCT.md`, `TRADEMARKS.md`, `CHANGELOG.md`,
   `CODEOWNERS`, GitHub issue/PR templates, branch-protection guidance, and a

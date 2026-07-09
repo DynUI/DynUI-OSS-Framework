@@ -83,6 +83,99 @@ If you only need to toggle a feature, swap copy, publish editorial content, or s
 a static A/B variant, use a feature flag, CMS, or testing platform directly. See
 [Comparisons](docs/COMPARISONS.md).
 
+## For designers
+
+**You keep designing in Figma exactly as you do today.** DynUI does not replace your
+workflow, your component library, your auto-layout, your variants, or your tokens. It
+does not generate visuals, and it never lets a model invent a screen from scratch or
+draw pixels you didn't design. Everything a user sees is a component *you* built.
+
+What changes is small but powerful: for each component you already design, you add a
+short note that says **who it's for and where it belongs**. That note is the whole
+contract. From it, the system can assemble a different, on-brand arrangement of *your*
+components for each user — a performance-focused athlete and a casual wellness user
+see the same design language, but not the same screen — and it can never step outside
+the vocabulary you defined. You stay the author of the design system; personalization
+just becomes something you *specify* instead of something engineering hard-codes after
+handoff.
+
+### The three things you define
+
+Think of it as designing the *rules of the room*, not each individual layout.
+
+**1. Components — the vocabulary.** Design them normally. Then, in each component's
+description in Figma, add a small fenced block describing its behavioral contract.
+Everything here is language you already use in design reviews — you're just writing it
+down where the system can read it:
+
+````markdown
+```dynui
+{
+  "id": "recovery-score-card",
+  "category": "insight",
+  "description": "Shows the user's recovery readiness.",
+  "surfaces": ["activity-detail"],
+  "audience": ["wellness"],
+  "priority": 80
+}
+```
+````
+
+- **`surfaces`** — which screens this component is *allowed* to appear on (e.g. the
+  activity detail page). Think of it as the placement rules you'd normally give in a
+  spec.
+- **`audience`** — which kinds of users this is *for* (`["wellness"]`, `["performance"]`,
+  or `["*"]` for everyone). This is how you say "the recovery card is for wellness-minded
+  users; the split-pace chart is for performance users."
+- **`priority`** — how important this component is relative to others when space is
+  tight, i.e. what earns a spot above the fold.
+- **Variants** map to your Figma variants (e.g. a headline *with* vs. *without* a hero
+  photo), so the right variant is chosen per user.
+- **Data requirements** — which pieces of real data the component needs to render
+  (so it's never shown empty or broken). You already think in these terms when you
+  design an empty state; here you just name the fields.
+
+You can also set a few library-wide rules (in a Figma node named `@dynui/config`) that
+act as guardrails — for example, "never hide the activity headline," "pin it to the
+top," and "no more than three modules above the fold." These are the invariants that
+keep every generated screen recognizably *your* design, no matter how it's personalized.
+
+**2. Users & segments — who you're designing for.** Personalization is only as good as
+the user model behind it. You define the audience segments your design speaks to — for
+the fitness demo these are **Performance Athlete**, **Casual / Wellness**, and
+**Social / Competitive** — and, with your data/engineering partners, what real behavior
+signals a user *into* each one (e.g. "a user who repeatedly opens detailed charts leans
+performance; one who reads insight cards leans wellness"). These are the same personas
+you already sketch at the start of a project — DynUI just makes them a first-class,
+living input to the UI rather than a slide that gets forgotten after kickoff. A user can
+even lean toward more than one segment, and shift over time as their behavior changes.
+
+**3. Consent & the neutral baseline.** Some users won't have consented to
+personalization, or will be brand new with no signal yet. You design a **neutral
+default screen** for exactly this case — a safe, sensible, un-personalized arrangement.
+This is enforced automatically: no consent or no signal means the neutral design, never
+a leak of audience-specific components. Designing that baseline well is part of the job,
+not an afterthought.
+
+### Why this is worth your time
+
+- **You own the outcome, not just the mockup.** Instead of handing off three static
+  comps and hoping engineering wires the right one to the right user, you encode the
+  intent once and it holds — the same rules run in production.
+- **The brand can't drift.** Generation is bounded to *your* components, variants, and
+  tokens. There is no path for a machine to produce off-brand or off-spec UI; anything
+  that would violate your rules is rejected before it can render.
+- **Personalization becomes reviewable design work.** "Who is this for, where does it
+  belong, what's its priority" is a design conversation. DynUI turns it into an
+  artifact your team can review, version, and iterate — instead of logic buried in code.
+- **One design system, many screens.** You define the vocabulary and the rules once;
+  every user gets a coherent, on-brand screen assembled from it.
+
+When you're ready for the mechanics, the export path (Figma file → validated component
+manifest) is documented in the [Figma export workflow](docs/FIGMA_EXPORT.md), and the
+end-to-end adoption path is in the [Quickstart](docs/QUICKSTART.md). But the design work
+above is the part that's yours — the rest is plumbing your engineering team owns.
+
 ## Architecture
 
 ```mermaid
@@ -116,6 +209,51 @@ Request-time render paths should use deterministic generation or cached trees.
 Live model calls are optional and should run in background, cache-warming, or
 session-boundary flows behind a timeout budget.
 
+## Where a model earns its place, above the heuristic
+
+The deterministic engine is the floor, and it is a good floor: instant, free, no
+credentials, request-time-safe, and byte-stable. It ranks your registered components
+against a `SignalProfile` and lays them out in flat, above-the-fold / detail sections.
+For many surfaces that is genuinely enough — which is exactly why a model is *optional*.
+
+But the heuristic has a hard structural ceiling: **it sorts, it never composes.** It
+places components as flat siblings and it never fills a slot, so it cannot nest a
+supporting component inside a container or express *grouping* and *hierarchy* at all.
+Its scoring is also linear and additive, so it cannot capture how signals *interact*
+("promote sleep only when recovery is low *and* there's a morning workout"). Encoding
+either by hand means an ever-growing table of rules and pins — the authoring cost the
+framework exists to avoid, and one that grows fastest for large vocabularies and brand-new
+domains that have written no ranking rules yet.
+
+A model works inside the **exact same bounds** — the same eligibility pre-filter feeds
+it the same vocabulary, and its output passes the same `validateRenderableTree` gate, so
+it can never step off-contract. What it adds is *composition*: arranging your components
+into nested, grouped structures the deterministic engine cannot reach — not new pixels,
+not new components, just a better arrangement of the vocabulary you already registered.
+
+![Two dashboard screens from the same vocabulary: the deterministic engine alone leaves the readiness panel an empty frame with metrics scattered flat, while with an LLM composing the same metrics are nested into one coherent panel](docs/assets/heuristic-vs-composed.svg)
+
+The `readiness-panel` is the tell. On the left it is a hollow frame with its metrics
+scattered as flat siblings — and the above-the-fold cap even pushes sleep and the load
+trend below a "details" divider, fragmenting a group meant to read as one card. On the
+right, a model nests the same four components inside the panel. Same manifest, same data,
+same validator — the only difference is composition.
+
+See it yourself:
+
+```bash
+npm run demo:ceiling    # same vocabulary, two engines, side by side (no API key needed)
+```
+
+It prints both trees so you can diff them; the composed layout above is validated live,
+not mocked. Add `PROVIDER=anthropic ANTHROPIC_API_KEY=…` to run the final step on a real
+model and watch it produce the nested arrangement end to end.
+
+The two are complementary, not competing: the heuristic is the always-available,
+request-time floor and the guaranteed fallback; the model is the background /
+cache-warming / session-boundary step that raises the ceiling **where composition, not
+just ranking, is the point.**
+
 ## Packages
 
 | Package | Responsibility |
@@ -142,6 +280,7 @@ npm install
 
 npm run demo            # generate the three archetype screens (no API key needed)
 npm run demo:no-model   # a non-fitness (news) domain, fully deterministic, no model
+npm run demo:ceiling    # why a model helps: heuristic ranks, a model composes (nesting)
 npm run demo:experiment # canary a component, get a promote/rollback decision
 npm run demo:behavior   # cold user → session of taps → screen morphs
 npm run demo:persist    # behavior persists across a simulated relaunch
@@ -252,7 +391,8 @@ within a known vocabulary.
 
 Examples: `examples/fitness/` (reference domain + the `apps/fitness-app` renderer),
 `examples/news/` (minimal non-fitness domain), `npm run demo:no-model` (a fully
-deterministic, no-model run), and
+deterministic, no-model run), `examples/ceiling/` + `npm run demo:ceiling` (heuristic
+vs. composed layout, side by side), and
 [`examples/integrations/`](examples/integrations/README.md) (lightweight adapters for
 an external experiment engine, an HTTP profile store, and a telemetry warehouse —
 examples, not dependencies).
