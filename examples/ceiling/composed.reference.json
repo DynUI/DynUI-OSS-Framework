@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "ui-tree/1.0",
+  "surface": "dashboard",
+  "generatedFor": { "anonId": "" },
+  "meta": {
+    "generatedAt": "2026-07-09T00:00:00.000Z",
+    "model": "reference:composed",
+    "cacheKey": "dashboard|composed-reference",
+    "experiments": [],
+    "fallback": false
+  },
+  "root": {
+    "type": "screen",
+    "children": [
+      {
+        "type": "component",
+        "componentId": "readiness-panel",
+        "variant": "standard",
+        "reason": "Group the day's readiness signals into one coherent card.",
+        "slots": {
+          "body": [
+            {
+              "type": "component",
+              "componentId": "hrv-metric",
+              "variant": "compact",
+              "dataBindings": { "hrv": "hrv" },
+              "reason": "Primary readiness driver."
+            },
+            {
+              "type": "component",
+              "componentId": "strain-metric",
+              "variant": "compact",
+              "dataBindings": { "strain": "strain" },
+              "reason": "Context for today's capacity."
+            },
+            {
+              "type": "component",
+              "componentId": "sleep-metric",
+              "variant": "compact",
+              "dataBindings": { "sleep": "sleep" },
+              "reason": "Recovery input."
+            }
+          ],
+          "detail": [
+            {
+              "type": "component",
+              "componentId": "load-trend",
+              "variant": "sparkline",
+              "dataBindings": { "loadSeries": "loadSeries" },
+              "reason": "Trend framing beside the metrics."
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
