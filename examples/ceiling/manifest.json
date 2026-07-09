@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "component-manifest/1.0",
+  "registry": {
+    "name": "readiness-pack",
+    "version": "0.1.0",
+    "domain": "fitness"
+  },
+  "constraints": {
+    "neverHide": ["readiness-panel"],
+    "pinned": [{ "componentId": "readiness-panel", "position": "top" }],
+    "maxModulesAboveFold": 3,
+    "allowedCategoriesBySurface": {
+      "dashboard": ["container", "metric", "chart"]
+    }
+  },
+  "components": [
+    {
+      "id": "readiness-panel",
+      "name": "Readiness Panel",
+      "version": "1.0.0",
+      "category": "container",
+      "description": "The morning readiness summary. A composing container whose whole point is to GROUP the day's readiness signals (HRV, strain, sleep) into one coherent card, with a load trend beside them. Its value is the grouping, not the frame.",
+      "intent": ["group", "orient"],
+      "variants": [{ "id": "standard", "description": "Default framing." }],
+      "slots": [
+        {
+          "id": "body",
+          "accepts": ["metric"],
+          "required": false,
+          "description": "The readiness metrics shown together inside the panel."
+        },
+        {
+          "id": "detail",
+          "accepts": ["chart"],
+          "required": false,
+          "description": "An optional trend chart shown alongside the metrics."
+        }
+      ],
+      "data": [],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 90,
+        "prominence": "hero",
+        "goals": []
+      }
+    },
+    {
+      "id": "hrv-metric",
+      "name": "HRV Metric",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "Heart-rate variability tile. Only meaningful next to the other readiness signals.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "compact", "description": "Number + label." }],
+      "slots": [],
+      "data": [{ "key": "hrv", "type": "number", "required": true }],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 70,
+        "prominence": "secondary",
+        "goals": []
+      }
+    },
+    {
+      "id": "strain-metric",
+      "name": "Strain Metric",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "Yesterday's training strain tile.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "compact", "description": "Number + label." }],
+      "slots": [],
+      "data": [{ "key": "strain", "type": "number", "required": true }],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 65,
+        "prominence": "secondary",
+        "goals": []
+      }
+    },
+    {
+      "id": "sleep-metric",
+      "name": "Sleep Metric",
+      "version": "1.0.0",
+      "category": "metric",
+      "description": "Last night's sleep-hours tile.",
+      "intent": ["summarize"],
+      "variants": [{ "id": "compact", "description": "Number + label." }],
+      "slots": [],
+      "data": [{ "key": "sleep", "type": "number", "required": true }],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 60,
+        "prominence": "secondary",
+        "goals": []
+      }
+    },
+    {
+      "id": "load-trend",
+      "name": "Load Trend",
+      "version": "1.0.0",
+      "category": "chart",
+      "description": "A small 7-day training-load trend. Belongs beside the readiness metrics, not on its own.",
+      "intent": ["analyze"],
+      "variants": [{ "id": "sparkline", "description": "Compact trend." }],
+      "slots": [],
+      "data": [{ "key": "loadSeries", "type": "series", "required": true }],
+      "contract": {
+        "audience": ["*"],
+        "surfaces": ["dashboard"],
+        "priority": 55,
+        "prominence": "tertiary",
+        "goals": []
+      }
+    }
+  ]
+}
