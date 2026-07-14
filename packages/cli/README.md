@@ -6,14 +6,15 @@ Schemas — without writing TypeScript. It is deliberately **not** a management 
 no network, no state, no config.
 
 ```bash
-npx dynui validate manifest.json            # parse + schema-validate a manifest
-npx dynui validate-tree tree.json m.json    # STRUCTURAL UITree validation
-npx dynui lint manifest.json                # governance lint (non-zero on errors)
-npx dynui schema component-manifest         # print a shipped JSON Schema
-npx dynui schema                            # list available schemas
-npx dynui --help
+npx @dynui/cli validate manifest.json            # parse + schema-validate a manifest
+npx @dynui/cli validate-tree tree.json m.json    # STRUCTURAL UITree validation
+npx @dynui/cli lint manifest.json                # governance lint (non-zero on errors)
+npx @dynui/cli schema component-manifest         # print a shipped JSON Schema
+npx @dynui/cli schema                            # list available schemas
+npx @dynui/cli --help
 ```
 
+Once installed as a dependency, the binary is named `dynui` (e.g. `dynui validate manifest.json`).
 In this repo you can also run it via `npm run dynui -- <args>`.
 
 ## Commands
