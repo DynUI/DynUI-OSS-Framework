@@ -32,3 +32,6 @@ PLAN.md
 docs/PRE_PUBLISH_DEVELOPMENT_INSTRUCTIONS.md
 docs/POST_REVIEW_DEVELOPMENT_INSTRUCTIONS.md
 docs/PRODUCTION_READINESS_REQUIREMENTS.md
+
+# Documentation website — kept local, maintained outside this repo
+website/
