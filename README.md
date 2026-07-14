@@ -1,6 +1,6 @@
 # DynUI
 
-> **Status: experimental / alpha.** APIs will change. Not yet published to a registry.
+> **Status: experimental / alpha.** APIs will change.
 
 **Contract-validated personalized UI for modern apps.**
 
