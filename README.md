@@ -23,7 +23,13 @@ consumer apps, marketplaces, media products, health and fitness apps, fintech
 dashboards, developer tools, internal workflow software, and any product where two
 valuable users should not necessarily see the same screen.
 
-![DynUI fitness mobile demo screenshot](docs/assets/fitness-demo-mobile.png)
+<p align="center">
+  <img src="docs/assets/demo-screen-performance.png" alt="Performance screen: activity header, recovery ring, strain bar, HRV trend, and splits table" width="32%" />
+  <img src="docs/assets/demo-screen-recovery.png" alt="Recovery screen: greeting card, sleep card, readiness message, and steps ring" width="32%" />
+  <img src="docs/assets/demo-screen-social.png" alt="Social screen: feed cards, leaderboard, and challenge card" width="32%" />
+</p>
+
+<p align="center"><em>One activity, three screens — the same registered vocabulary composed for a performance-, recovery-, and social-oriented user.</em></p>
 
 Why teams adopt this shape:
 
