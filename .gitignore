@@ -35,3 +35,6 @@ docs/PRODUCTION_READINESS_REQUIREMENTS.md
 
 # Documentation website — kept local, maintained outside this repo
 website/
+
+# Local agent/editor tooling config — not part of the published project.
+.claude/
