@@ -186,7 +186,7 @@ Use a feature flag, CMS or standard experimentation tool directly when you only 
 
 Read the full comparison:
 
-[DynUI comparisons and decision guide →](https://www.dynui.dev/docs/ADD_COMPARISONS_ROUTE/)
+[DynUI comparisons and decision guide →](docs/COMPARISONS.md)
 
 ## For developers
 
@@ -219,7 +219,7 @@ Your application retains ownership of:
 - analytics;
 - model endpoints.
 
-[Read the developer documentation →](https://www.dynui.dev/docs/ADD_DEVELOPER_ROUTE/)
+[Read the developer documentation →](docs/QUICKSTART.md)
 
 ## For designers
 
@@ -258,7 +258,7 @@ remaining inside the approved design system.
 Designers retain ownership of the visual language. DynUI governs how approved components
 may be selected and arranged.
 
-[Read the designer workflow →](https://www.dynui.dev/docs/ADD_DESIGNER_ROUTE/)
+[Read the designer workflow →](docs/FIGMA_EXPORT.md)
 
 ## Architecture
 
@@ -328,7 +328,7 @@ model nests the same four components inside the panel. Same manifest, same data,
 validator — the only difference is composition. Run `npm run demo:ceiling` to see both
 trees side by side, with no API key required.
 
-[Read about bounded generation →](https://www.dynui.dev/docs/ADD_GENERATION_ROUTE/)
+[Read about bounded generation →](packages/generate/README.md)
 
 ## Safety and governance
 
@@ -352,7 +352,7 @@ The safety model includes:
 
 This means an invalid generated layout cannot be mistaken for a valid renderable screen.
 
-[Read the safety model →](https://www.dynui.dev/docs/ADD_SAFETY_ROUTE/)
+[Read the safety model →](packages/validate/README.md)
 
 ## Project scope
 
@@ -394,12 +394,12 @@ https://www.dynui.dev
 ### Start here
 
 - [Quickstart](https://www.dynui.dev/getting-started/quickstart/) — install DynUI and generate your first personalised interface.
-- [Tutorial](https://www.dynui.dev/docs/ADD_TUTORIAL_ROUTE/) — build a personalised screen from component contracts through to rendering.
+- [Tutorial](docs/ADOPTION_NEWS.md) — build a personalised screen from component contracts through to rendering.
 - [Core concepts](https://www.dynui.dev/docs/ADD_CONCEPTS_ROUTE/) — understand manifests, profiles, generation, validation and UI trees.
-- [Developer guides](https://www.dynui.dev/docs/ADD_DEVELOPER_ROUTE/) — integrate DynUI into an application and connect your existing services.
-- [Designer workflow](https://www.dynui.dev/docs/ADD_DESIGNER_ROUTE/) — define behavioural contracts for design-system components.
+- [Developer guides](docs/QUICKSTART.md) — integrate DynUI into an application and connect your existing services.
+- [Designer workflow](docs/FIGMA_EXPORT.md) — define behavioural contracts for design-system components.
 - [Architecture](https://www.dynui.dev/docs/ADD_ARCHITECTURE_ROUTE/) — understand the runtime, providers and integration boundaries.
-- [API reference](https://www.dynui.dev/docs/ADD_API_ROUTE/) — explore package interfaces, schemas and configuration.
+- [API reference](packages/) — explore package interfaces, schemas and configuration.
 
 Documentation stored within this repository is primarily intended for contributors,
 implementation details and source-level reference.
