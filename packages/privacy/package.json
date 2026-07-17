@@ -5,12 +5,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dynui/dynui.git",
+    "url": "git+https://github.com/DynUI/DynUI-OSS-Framework.git",
     "directory": "packages/privacy"
   },
-  "homepage": "https://github.com/dynui/dynui/tree/main/packages/privacy#readme",
+  "homepage": "https://github.com/DynUI/DynUI-OSS-Framework/tree/main/packages/privacy#readme",
   "bugs": {
-    "url": "https://github.com/dynui/dynui/issues"
+    "url": "https://github.com/DynUI/DynUI-OSS-Framework/issues"
   },
   "type": "module",
   "main": "dist/index.js",

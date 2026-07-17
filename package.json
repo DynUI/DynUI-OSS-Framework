@@ -4,11 +4,11 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dynui/dynui.git"
+    "url": "git+https://github.com/DynUI/DynUI-OSS-Framework.git"
   },
-  "homepage": "https://github.com/dynui/dynui#readme",
+  "homepage": "https://github.com/DynUI/DynUI-OSS-Framework#readme",
   "bugs": {
-    "url": "https://github.com/dynui/dynui/issues"
+    "url": "https://github.com/DynUI/DynUI-OSS-Framework/issues"
   },
   "workspaces": [
     "packages/*"
