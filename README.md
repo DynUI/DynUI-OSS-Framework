@@ -2,26 +2,15 @@
 
 > **Status: experimental / alpha.** APIs will change.
 
-**Contract-validated personalized UI for modern apps.**
+**Contract-validated personalised UI for modern apps**
 
-DynUI is a self-hosted framework for teams that want app surfaces to adapt to
-user behavior, segments, consent, and experiments while keeping the actual UI inside
-a governed design system. Instead of choosing between a few manually authored
-variants, you register real components with behavioral contracts. A deterministic
-engine, or an optional model provider, composes a per-user server-driven UI tree from
-that vocabulary; the validator rejects anything off-contract before it can render.
+DynUI is a self-hosted framework for teams that want application surfaces to adapt to
+user behaviour, segments, consent and experiments while keeping the rendered interface
+inside a governed design system.
 
-Use it when personalization needs to change **screen structure**: which modules
-appear, how dense the view is, what gets promoted above the fold, which supporting
-components are nested into a panel, and how experiments are attributed. Reach for a
-feature flag, CMS, or A/B testing tool instead when you only need to swap copy,
-toggle one component, or target a static variant.
-
-DynUI is built for product engineering teams who already have a design system,
-real user signals, and a need to safely personalize complex application surfaces:
-consumer apps, marketplaces, media products, health and fitness apps, fintech
-dashboards, developer tools, internal workflow software, and any product where two
-valuable users should not necessarily see the same screen.
+Instead of choosing between a small number of manually authored screens, teams register
+real components with behavioural contracts. DynUI then composes a per-user server-driven
+UI tree from that approved vocabulary and validates the result before it can render.
 
 <p align="center">
   <img src="docs/assets/demo-screen-performance.png" alt="Performance screen: activity header, recovery ring, strain bar, HRV trend, and splits table" width="32%" />
@@ -31,88 +20,224 @@ valuable users should not necessarily see the same screen.
 
 <p align="center"><em>One activity, three screens — the same registered vocabulary composed for a performance-, recovery-, and social-oriented user.</em></p>
 
-Why teams adopt this shape:
+## Why DynUI
 
-- **Contracts, not prompts, define the UI.** Designers and engineers declare the
-  component vocabulary, allowed surfaces, data requirements, audience rules, slots,
-  accessibility requirements, and experiment gates.
-- **The render path is bounded.** Generated output is a `UITree` of registered
-  components, not markup or arbitrary code, and every tree is validated before render.
-- **Models are optional.** The deterministic engine can compose valid personalized
-  screens without any model call; live providers are best used for background
-  generation, cache warming, or session-boundary refinement.
-- **It fits your stack.** Bring your own profile adapter, model provider,
-  experimentation system, telemetry sink, and renderer.
-- **Personalization stays measurable.** Experiments attach to registered
-  components/variants, so outcomes are attributable instead of being hidden inside
-  raw model output.
+Most personalisation tools change content inside a fixed interface.
 
-The reference app is a fitness tracker: the same activity renders differently for a
-performance, wellness, or social user, and adapts as the user's behavior accumulates.
+DynUI is designed for personalisation that changes the structure of the screen,
+including:
 
-## Project Scope
+- which modules appear;
+- which components are promoted above the fold;
+- how dense the screen becomes;
+- how supporting components are grouped or nested;
+- which component variants are selected;
+- how experiments are attributed.
 
-DynUI is a **self-hosted, bring-your-own-provider framework**. It integrates
-with the model, experimentation, profile, and telemetry systems you already run — it
-does not host anything for you or replace those systems.
+DynUI keeps this personalisation bounded by components and rules defined by your design
+and engineering teams.
 
-**What this project provides:**
+### Contracts, not prompts
 
-- public contracts and schemas;
-- deterministic generation and a deterministic fallback;
-- strict, context-aware validation;
+Designers and engineers define the available component vocabulary, supported surfaces,
+data requirements, audience rules, slots, accessibility requirements and experiment
+gates.
+
+Models cannot invent arbitrary components, markup or application code.
+
+### Deterministic by default
+
+DynUI includes a deterministic generation engine that can personalise screens without
+calling a model.
+
+Model providers are optional and are best used for background generation, cache warming
+or session-boundary refinement.
+
+### Validated before render
+
+Generated output is represented as a registered `UITree`.
+
+Every tree must pass strict validation before it can be rendered by the application.
+
+### Designed for your existing stack
+
+Bring your own:
+
+- design system;
+- renderer;
+- profile store;
+- experimentation platform;
+- telemetry system;
+- model provider.
+
+### Consent-aware
+
+Users without sufficient signals or personalisation consent receive a neutral baseline
+rather than an inferred personalised experience.
+
+### Measurable
+
+Experiments and outcomes remain attached to registered components and variants instead
+of being hidden inside unrestricted model output.
+
+## Quickstart
+
+Clone the repository and run the default demonstration:
+
+```bash
+git clone https://github.com/DynUI/DynUI-OSS-Framework.git
+cd DynUI-OSS-Framework
+npm install
+npm run demo
+```
+
+For the complete setup, explanation and integration walkthrough, follow the:
+
+[DynUI Quickstart →](https://www.dynui.dev/getting-started/quickstart/)
+
+## Explore the examples
+
+DynUI includes examples covering deterministic generation, behavioural adaptation,
+experimentation and model-assisted composition.
+
+```bash
+npm run demo
+```
+
+Run the core DynUI example.
+
+```bash
+npm run demo:no-model
+```
+
+Generate a personalised screen using the deterministic engine with no model credentials.
+
+```bash
+npm run demo:behavior
+```
+
+See how accumulated user behaviour changes the generated screen.
+
+```bash
+npm run demo:experiment
+```
+
+Explore component-level experiment assignment and attribution.
+
+```bash
+npm run demo:persist
+```
+
+Run the persistence example.
+
+```bash
+npm run demo:figma
+```
+
+Explore the Figma-to-manifest workflow.
+
+```bash
+npm run demo:ceiling
+```
+
+Compare deterministic ranking with model-assisted nested composition.
+
+```bash
+npm run gen:verify
+```
+
+Verify generated output against the DynUI contracts.
+
+```bash
+npm run eval:contracts
+npm run eval:generation
+```
+
+Run contract and generation evaluations.
+
+## When to use DynUI
+
+Use DynUI when personalisation needs to alter the structure or hierarchy of an
+application surface.
+
+Typical use cases include:
+
+- consumer applications;
+- health and fitness products;
+- marketplaces;
+- media and content platforms;
+- fintech dashboards;
+- developer tools;
+- internal workflow products;
+- products with mature design systems and meaningful behavioural signals.
+
+DynUI is especially suitable when two valuable users should not necessarily see the same
+arrangement of the same product capabilities.
+
+## When not to use DynUI
+
+Use a feature flag, CMS or standard experimentation tool directly when you only need to:
+
+- toggle a single feature;
+- swap text or imagery;
+- publish editorial content;
+- show a fixed variant;
+- run a simple static A/B test.
+
+Read the full comparison:
+
+[DynUI comparisons and decision guide →](docs/COMPARISONS.md)
+
+## For developers
+
+DynUI provides a framework for safely composing personalised application screens from
+registered components.
+
+The framework includes:
+
+- public TypeScript contracts and schemas;
+- deterministic generation;
+- optional model-provider interfaces;
+- strict context-aware validation;
+- deterministic fallbacks;
 - privacy and consent enforcement;
-- manifest linting and governance primitives;
-- reference renderer examples;
-- test and eval harnesses;
-- documented integration seams for model providers, profile stores, experiment
-  assignment, telemetry, and renderers.
+- manifest linting;
+- experimentation primitives;
+- telemetry integration seams;
+- test and evaluation harnesses;
+- reference renderer examples.
 
-**What this project does not provide (by design):** a hosted control plane, a
-managed or bundled model, a hosted registry console, a managed experimentation
-service, an analytics warehouse, or team account management. These are
-**integration boundaries**, not missing features — you connect your own model
-endpoint, experiment engine, profile store, and telemetry sink behind the documented
-adapter interfaces; your app also owns the renderer registry that maps manifest
-components to native UI. Live model generation is optional; the deterministic engine
-runs with no model credentials at all. See [When not to use this](#when-not-to-use-this)
-for cases where a feature flag or CMS is the better tool.
+DynUI does not host a control plane or replace your existing infrastructure.
 
-## When to use this
+Your application retains ownership of:
 
-Use DynUI when personalization changes the **structure** of an application screen:
-which modules appear, how dense the view is, which components are nested together,
-which modules are promoted above the fold, and how component-level experiments are
-attributed.
+- the renderer registry;
+- component implementation;
+- user profile data;
+- experiment assignment;
+- telemetry;
+- analytics;
+- model endpoints.
 
-If you only need to toggle a feature, swap copy, publish editorial content, or show
-a static A/B variant, use a feature flag, CMS, or testing platform directly. See
-[Comparisons](docs/COMPARISONS.md).
+[Read the developer documentation →](docs/QUICKSTART.md)
 
 ## For designers
 
-**You keep designing in Figma exactly as you do today.** DynUI does not replace your
-workflow, your component library, your auto-layout, your variants, or your tokens. It
-does not generate visuals, and it never lets a model invent a screen from scratch or
-draw pixels you didn't design. Everything a user sees is a component *you* built.
+DynUI does not replace Figma, your component library, variants, auto-layout or design
+tokens.
 
-What changes is small but powerful: for each component you already design, you add a
-short note that says **who it's for and where it belongs**. That note is the whole
-contract. From it, the system can assemble a different, on-brand arrangement of *your*
-components for each user — a performance-focused athlete and a casual wellness user
-see the same design language, but not the same screen — and it can never step outside
-the vocabulary you defined. You stay the author of the design system; personalization
-just becomes something you *specify* instead of something engineering hard-codes after
-handoff.
+Designers continue to create application components as normal, then add behavioural
+information describing:
 
-### The three things you define
+- where a component may appear;
+- which audiences it is suitable for;
+- its relative priority;
+- which data it requires;
+- which variants may be selected;
+- which components may be nested inside it;
+- which accessibility and brand rules must always hold.
 
-Think of it as designing the *rules of the room*, not each individual layout.
-
-**1. Components — the vocabulary.** Design them normally. Then, in each component's
-description in Figma, add a small fenced block describing its behavioral contract.
-Everything here is language you already use in design reviews — you're just writing it
-down where the system can read it:
+For example:
 
 ````markdown
 ```dynui
@@ -127,282 +252,298 @@ down where the system can read it:
 ```
 ````
 
-- **`surfaces`** — which screens this component is *allowed* to appear on (e.g. the
-  activity detail page). Think of it as the placement rules you'd normally give in a
-  spec.
-- **`audience`** — which kinds of users this is *for* (`["wellness"]`, `["performance"]`,
-  or `["*"]` for everyone). This is how you say "the recovery card is for wellness-minded
-  users; the split-pace chart is for performance users."
-- **`priority`** — how important this component is relative to others when space is
-  tight, i.e. what earns a spot above the fold.
-- **Variants** map to your Figma variants (e.g. a headline *with* vs. *without* a hero
-  photo), so the right variant is chosen per user.
-- **Data requirements** — which pieces of real data the component needs to render
-  (so it's never shown empty or broken). You already think in these terms when you
-  design an empty state; here you just name the fields.
+DynUI uses these contracts to compose different arrangements of components while
+remaining inside the approved design system.
 
-You can also set a few library-wide rules (in a Figma node named `@dynui/config`) that
-act as guardrails — for example, "never hide the activity headline," "pin it to the
-top," and "no more than three modules above the fold." These are the invariants that
-keep every generated screen recognizably *your* design, no matter how it's personalized.
+Designers retain ownership of the visual language. DynUI governs how approved components
+may be selected and arranged.
 
-**2. Users & segments — who you're designing for.** Personalization is only as good as
-the user model behind it. You define the audience segments your design speaks to — for
-the fitness demo these are **Performance Athlete**, **Casual / Wellness**, and
-**Social / Competitive** — and, with your data/engineering partners, what real behavior
-signals a user *into* each one (e.g. "a user who repeatedly opens detailed charts leans
-performance; one who reads insight cards leans wellness"). These are the same personas
-you already sketch at the start of a project — DynUI just makes them a first-class,
-living input to the UI rather than a slide that gets forgotten after kickoff. A user can
-even lean toward more than one segment, and shift over time as their behavior changes.
-
-**3. Consent & the neutral baseline.** Some users won't have consented to
-personalization, or will be brand new with no signal yet. You design a **neutral
-default screen** for exactly this case — a safe, sensible, un-personalized arrangement.
-This is enforced automatically: no consent or no signal means the neutral design, never
-a leak of audience-specific components. Designing that baseline well is part of the job,
-not an afterthought.
-
-### Why this is worth your time
-
-- **You own the outcome, not just the mockup.** Instead of handing off three static
-  comps and hoping engineering wires the right one to the right user, you encode the
-  intent once and it holds — the same rules run in production.
-- **The brand can't drift.** Generation is bounded to *your* components, variants, and
-  tokens. There is no path for a machine to produce off-brand or off-spec UI; anything
-  that would violate your rules is rejected before it can render.
-- **Personalization becomes reviewable design work.** "Who is this for, where does it
-  belong, what's its priority" is a design conversation. DynUI turns it into an
-  artifact your team can review, version, and iterate — instead of logic buried in code.
-- **One design system, many screens.** You define the vocabulary and the rules once;
-  every user gets a coherent, on-brand screen assembled from it.
-
-When you're ready for the mechanics, the export path (Figma file → validated component
-manifest) is documented in the [Figma export workflow](docs/FIGMA_EXPORT.md), and the
-end-to-end adoption path is in the [Quickstart](docs/QUICKSTART.md). But the design work
-above is the part that's yours — the rest is plumbing your engineering team owns.
+[Read the designer workflow →](docs/FIGMA_EXPORT.md)
 
 ## Architecture
 
+DynUI separates profile data, eligibility, generation, validation, rendering and
+telemetry.
+
 ```mermaid
 flowchart LR
-  profile["ProfileAdapter -> SignalProfile"] --> generate["ModelProvider.generate()"]
+  profile["ProfileAdapter → SignalProfile"] --> generate["Generation engine"]
   manifest["ComponentManifest"] --> generate
   generate --> tree["UITree"]
   tree --> validate["validateRenderableTree"]
-  validate --> render["render (SDUI)"]
-  generate --> fallback["repair / deterministic fallback"]
+  validate --> render["Application renderer"]
+  generate --> fallback["Repair / deterministic fallback"]
   fallback --> validate
-  render --> telemetry["telemetry"]
-  telemetry --> aggregate["aggregate behavior"]
+  render --> telemetry["Telemetry"]
+  telemetry --> aggregate["Behaviour aggregation"]
   aggregate --> profile
 ```
 
-## Safety Model
+The generated output can only reference registered components.
 
-Bounded generation makes this safe: the manifest is the only vocabulary, the validator
-is the gate, and a deterministic heuristic engine is the fallback — a device never
-blocks on or breaks because of the model. The fallback contract is precise:
-`generateScreen` returns **either** a valid renderable tree **or** an explicit
-non-renderable result (`unrenderable: true`, `validation.ok: false`) that the app
-cannot mistake for a safe screen — it never returns a renderable-looking tree that is
-actually invalid. The deterministic engine itself is production-grade: staged
-(eligibility → scoring → layout → variant → explanation), byte-stable, configurable
-via a `RankPolicy`, with PII-free cache keys and a structured explanation per
-component. See [packages/generate/README.md](packages/generate/README.md).
+The validator is the final gate before rendering. If generation produces an invalid
+result, DynUI repairs it, falls back to deterministic generation or returns an explicitly
+non-renderable result.
 
-Request-time render paths should use deterministic generation or cached trees.
-Live model calls are optional and should run in background, cache-warming, or
-session-boundary flows behind a timeout budget.
+Request-time rendering should use deterministic generation or previously cached trees.
+Live model calls should generally run outside the critical render path.
 
-## Where a model earns its place, above the heuristic
+[Explore the full architecture →](https://www.dynui.dev/docs/ADD_ARCHITECTURE_ROUTE/)
 
-The deterministic engine is the floor, and it is a good floor: instant, free, no
-credentials, request-time-safe, and byte-stable. It ranks your registered components
-against a `SignalProfile` and lays them out in flat, above-the-fold / detail sections.
-For many surfaces that is genuinely enough — which is exactly why a model is *optional*.
+## Deterministic and model-assisted generation
 
-But the heuristic has a hard structural ceiling: **it sorts, it never composes.** It
-places components as flat siblings and it never fills a slot, so it cannot nest a
-supporting component inside a container or express *grouping* and *hierarchy* at all.
-Its scoring is also linear and additive, so it cannot capture how signals *interact*
-("promote sleep only when recovery is low *and* there's a morning workout"). Encoding
-either by hand means an ever-growing table of rules and pins — the authoring cost the
-framework exists to avoid, and one that grows fastest for large vocabularies and brand-new
-domains that have written no ranking rules yet.
+DynUI treats deterministic generation as the reliable floor.
 
-A model works inside the **exact same bounds** — the same eligibility pre-filter feeds
-it the same vocabulary, and its output passes the same `validateRenderableTree` gate, so
-it can never step off-contract. What it adds is *composition*: arranging your components
-into nested, grouped structures the deterministic engine cannot reach — not new pixels,
-not new components, just a better arrangement of the vocabulary you already registered.
+The deterministic engine:
+
+- requires no model credentials;
+- is fast and request-safe;
+- produces byte-stable output;
+- ranks eligible components;
+- selects variants;
+- creates a valid layout;
+- returns structured explanations.
+
+For many surfaces, deterministic ranking is sufficient.
+
+A model becomes useful when the interface requires more complex composition, such as:
+
+- nested component groups;
+- contextual hierarchy;
+- interaction between multiple user signals;
+- composition across a large component vocabulary.
+
+Models operate inside the same constraints as deterministic generation.
+
+They receive an eligible vocabulary and their output must pass the same validation gate.
+A model may arrange registered components, but it cannot introduce unregistered
+components or arbitrary application code.
 
 ![Two dashboard screens from the same vocabulary: the deterministic engine alone leaves the readiness panel an empty frame with metrics scattered flat, while with an LLM composing the same metrics are nested into one coherent panel](docs/assets/heuristic-vs-composed.svg)
 
 The `readiness-panel` is the tell. On the left it is a hollow frame with its metrics
-scattered as flat siblings — and the above-the-fold cap even pushes sleep and the load
-trend below a "details" divider, fragmenting a group meant to read as one card. On the
-right, a model nests the same four components inside the panel. Same manifest, same data,
-same validator — the only difference is composition.
+scattered as flat siblings, and the above-the-fold cap pushes sleep and the load trend
+below a "details" divider, fragmenting a group meant to read as one card. On the right, a
+model nests the same four components inside the panel. Same manifest, same data, same
+validator — the only difference is composition. Run `npm run demo:ceiling` to see both
+trees side by side, with no API key required.
 
-See it yourself:
+[Read about bounded generation →](packages/generate/README.md)
 
-```bash
-npm run demo:ceiling    # same vocabulary, two engines, side by side (no API key needed)
+## Safety and governance
+
+DynUI is designed around bounded generation.
+
+The component manifest defines the only vocabulary that may appear in generated output.
+
+The safety model includes:
+
+- component eligibility checks;
+- surface restrictions;
+- data requirement validation;
+- consent enforcement;
+- required and pinned components;
+- slot and nesting constraints;
+- accessibility rules;
+- experiment gates;
+- strict tree validation;
+- deterministic fallback behaviour;
+- explicit non-renderable failure states.
+
+This means an invalid generated layout cannot be mistaken for a valid renderable screen.
+
+[Read the safety model →](packages/validate/README.md)
+
+## Project scope
+
+DynUI is a self-hosted, bring-your-own-provider framework.
+
+**DynUI provides**
+
+- component contracts and schemas;
+- component manifests;
+- deterministic generation;
+- optional model generation interfaces;
+- validation;
+- fallback behaviour;
+- consent and privacy rules;
+- experimentation primitives;
+- telemetry interfaces;
+- reference implementations;
+- tests and evaluations.
+
+**DynUI does not provide**
+
+- a hosted control plane;
+- a managed component registry;
+- a bundled model;
+- a hosted experimentation service;
+- a hosted profile store;
+- an analytics warehouse;
+- user or team account management;
+- a replacement for your design system.
+
+These are integration boundaries rather than missing framework features.
+
+## Documentation
+
+The canonical DynUI documentation is published at:
+
+https://www.dynui.dev
+
+### Start here
+
+- [Quickstart](https://www.dynui.dev/getting-started/quickstart/) — install DynUI and generate your first personalised interface.
+- [Tutorial](docs/ADOPTION_NEWS.md) — build a personalised screen from component contracts through to rendering.
+- [Core concepts](https://www.dynui.dev/docs/ADD_CONCEPTS_ROUTE/) — understand manifests, profiles, generation, validation and UI trees.
+- [Developer guides](docs/QUICKSTART.md) — integrate DynUI into an application and connect your existing services.
+- [Designer workflow](docs/FIGMA_EXPORT.md) — define behavioural contracts for design-system components.
+- [Architecture](https://www.dynui.dev/docs/ADD_ARCHITECTURE_ROUTE/) — understand the runtime, providers and integration boundaries.
+- [API reference](packages/) — explore package interfaces, schemas and configuration.
+
+Documentation stored within this repository is primarily intended for contributors,
+implementation details and source-level reference.
+
+Where repository documentation conflicts with the published website, please open a
+documentation issue.
+
+## Repository structure
+
+```text
+.
+├── packages/          # Core DynUI packages
+├── apps/              # Reference renderer applications
+├── examples/          # Runnable demonstrations and integration examples
+├── docs/              # Implementation and contributor documentation
+├── eval/              # Contract and generation evaluations
+├── scripts/           # Build, validation and demonstration tooling
+├── tests/             # Automated tests
+└── README.md
 ```
 
-It prints both trees so you can diff them; the composed layout above is validated live,
-not mocked. Add `PROVIDER=anthropic ANTHROPIC_API_KEY=…` to run the final step on a real
-model and watch it produce the nested arrangement end to end.
+## Development
 
-The two are complementary, not competing: the heuristic is the always-available,
-request-time floor and the guaranteed fallback; the model is the background /
-cache-warming / session-boundary step that raises the ceiling **where composition, not
-just ranking, is the point.**
-
-## Packages
-
-| Package | Responsibility |
-|---------|----------------|
-| `@dynui/contracts` | The shared types: `SignalProfile`, `ComponentManifest`, `UITree`, `ModelProvider`, `ProfileAdapter` |
-| `@dynui/signal` | Resolve and evaluate signal-path conditions against a profile |
-| `@dynui/validate` | Validate a generated `UITree` against the manifest + constraints |
-| `@dynui/generate` | Compose screens: heuristic engine, LLM providers (Anthropic / OpenAI-compatible), repair + fallback |
-| `@dynui/experiments` | Component-level assignment, logging, and promote/rollback analysis |
-| `@dynui/telemetry` | Turn interaction events into behavior signals + an inferred archetype |
-| `@dynui/profile` | Profile Adapter implementations (in-memory, file-backed); persist behavior across sessions |
-| `@dynui/privacy` | Anonymization (salted HMAC), sensitivity model, prompt minimization, log/error redaction, consent gates |
-
-`apps/fitness-app` is the reference React Native / Expo renderer. It renders the
-actual `UITree` model — slot children nest inside their parent component (true
-composition, not a flat list) — guarded by a renderer registry contract
-(`checkRendererCompat`) and per-component error boundaries. See
-[apps/fitness-app/README.md](apps/fitness-app/README.md).
-
-## Quickstart
+Install dependencies:
 
 ```bash
 npm install
+```
 
-npm run demo            # generate the three archetype screens (no API key needed)
-npm run demo:no-model   # a non-fitness (news) domain, fully deterministic, no model
-npm run demo:ceiling    # why a model helps: heuristic ranks, a model composes (nesting)
-npm run demo:experiment # canary a component, get a promote/rollback decision
-npm run demo:behavior   # cold user → session of taps → screen morphs
-npm run demo:persist    # behavior persists across a simulated relaunch
-npm test                # run the test suite (includes the contract + generation evals)
+Run the test suite:
+
+```bash
+npm test
+```
+
+Run type checking:
+
+```bash
 npm run typecheck
-
-npm run eval:contracts   # validate the fixture corpus: every validator rule, pass + fail
-npm run eval:generation  # prove generation yields a valid tree or an explicit non-renderable
-                         # result (heuristic / invalid / malformed; live model only with DYNUI_EVAL_LIVE=1)
-npm run test:visual      # browser proof that valid fixtures render a coherent screen and
-                         # an unknown component falls back safely (Playwright + Chromium)
 ```
 
-`npm run test:visual` drives a headless Chromium over a renderer harness for six
-fixtures (flat, nested-slot, no-consent, experiment-gated, missing-optional-data, and
-a negative unknown-component case) across mobile and desktop viewports, asserting the
-page is non-blank, expected components appear, and invalid composition is surfaced by
-the safe fallback. It needs a browser (`npx playwright install chromium`) and skips
-cleanly when none is present; CI installs one. It is **required before release**.
-
-The eval harness (`eval/`) measures behavior against a fixture corpus under
-`tests/fixtures/` with thresholds encoded in code, so CI fails on any regression.
-See [tests/fixtures/README.md](tests/fixtures/README.md).
-
-Run generation against a real model:
+Build the project:
 
 ```bash
-echo "OPENROUTER_API_KEY=sk-or-..." > .env   # or ANTHROPIC_API_KEY
-echo "DYNUI_MODEL=anthropic/claude-sonnet-4.5" >> .env
-npm run gen:verify       # measures first-try validity, repair %, fallback %, latency, tokens
+npm run build
 ```
 
-The reference app:
+Run the smoke tests:
 
 ```bash
-cd apps/fitness-app
-npm install
-npx expo start --web     # or i / a for native
+npm run smoke
 ```
 
-## Concepts
+Run visual tests:
 
-- **Behavioral contract** — each component declares `audience`, `surfaces`, `showWhen` /
-  `hideWhen` signal conditions, `priority`, and an optional `experiment` gate.
-- **Bounded generation** — the model emits a `UITree` of references to manifest
-  components; `@dynui/validate` is the **safety boundary** that rejects anything
-  off-contract: surface/audience/consent eligibility, hard `showWhen`/`hideWhen`,
-  data existence + types, declared props only (no arbitrary/unsafe props), layout
-  rails, and accessibility — each with a stable error code and node path. See
-  [packages/validate/README.md](packages/validate/README.md).
-- **Runtime schemas** — every public artifact (`SignalProfile`, `ComponentManifest`,
-  `UITree`, `GenerationRequest`, telemetry events, experiment defs) has a hand-rolled,
-  zero-dependency runtime schema in `@dynui/contracts` (`parseComponentManifest`,
-  `migrateManifest`, …) that rejects malformed shapes and unsupported versions before
-  any logic runs. JSON Schema artifacts are emitted from the same definitions
-  (`npm run gen:schema`, shipped under `@dynui/contracts/schema`).
-- **Consent & privacy** — consent is enforced in code everywhere: no
-  personalization → neutral screen (validator rejects archetype-restricted
-  components); no analytics → no telemetry capture or behavior ingestion. The model
-  receives a minimized projection (no identifiers, no raw behavior, no sensitive
-  fields), ids are salted-HMAC anonymized, and logs/errors are redacted. See
-  [docs/PRIVACY.md](docs/PRIVACY.md).
-- **Experiments** — the unit under test is a registered component/variant, so outcomes
-  attribute cleanly; gated components never appear without the enabling assignment.
+```bash
+npm run test:visual
+```
 
-## When not to use this
+Lint a component manifest:
 
-DynUI earns its complexity only when personalization changes **screen
-structure**. If your need is simpler, a lighter tool is the right call:
+```bash
+npm run lint:manifest
+```
 
-- **You only need to toggle a feature or swap one component.** Use a **feature flag**
-  (LaunchDarkly, GrowthBook, Statsig, Unleash). You don't need a component manifest,
-  a generation engine, or a validator to flip a boolean.
-- **You're A/B testing copy, an image, or a single static variant.** Use your **A/B
-  testing / experimentation tool** directly. (DynUI *integrates* with these for
-  component-level assignment — but if the variant is static, you don't need it.)
-- **You're publishing editorial content or marketing pages.** Use a **CMS**
-  (Contentful, Sanity, etc.). Content modeling and scheduling are what those do well.
-- **You want the model to design freely.** This isn't that. Generation is **bounded**:
-  the model only arranges components that already exist in your manifest. If you want
-  open-ended layout/markup generation, this framework will feel like a straitjacket
-  (by design).
-- **You don't have real user signals or a design system yet.** The value comes from
-  composing a governed component vocabulary against a `SignalProfile`. Without either,
-  start simpler and adopt this when structural personalization becomes a real need.
+Generate JSON schemas:
 
-Reach for DynUI when *which modules appear, how dense the view is, what's
-promoted above the fold, and how experiments attribute* must vary per user — safely,
-within a known vocabulary.
+```bash
+npm run gen:schema
+```
 
-## Docs
+## Contributing
 
-- [Quickstart & adoption guide](docs/QUICKSTART.md) — zero to a personalized screen.
-- [Adoption walkthrough: a non-fitness domain](docs/ADOPTION_NEWS.md) — a news feed, no model.
-- [Privacy & data handling](docs/PRIVACY.md) — what data is used, consent, deletion.
-- [Versioning & upgrade policy](docs/UPGRADE.md) — semver, schema migration, compat matrix.
-- [Production deployment checklist](docs/DEPLOYMENT.md) — release and runtime gates.
-- [Model providers](docs/MODEL_PROVIDERS.md) — optional live providers and custom adapters.
-- [Deterministic-only mode](docs/DETERMINISTIC_ONLY.md) — no model, no provider SDK.
-- [Figma export workflow](docs/FIGMA_EXPORT.md) — turn design annotations into manifests.
-- [Experiment adapters](docs/EXPERIMENT_ADAPTERS.md) — bridge external assignment systems.
-- [Renderer implementation guide](docs/RENDERER_IMPLEMENTATION.md) — registry, slots, fallbacks.
-- [Comparisons](docs/COMPARISONS.md) — feature flags, CMS, A/B testing, SDUI.
-- [Releasing](docs/RELEASING.md) — reproducible CI release, provenance, supported Node.
-- [Governance](GOVERNANCE.md) · [Contributing](CONTRIBUTING.md) ·
-  [Security policy](SECURITY.md) · [Changelog](CHANGELOG.md).
-- Per-package API references live in each `packages/*/README.md`.
+DynUI welcomes contributions from developers, designers, researchers and technical
+writers.
 
-Examples: `examples/fitness/` (reference domain + the `apps/fitness-app` renderer),
-`examples/news/` (minimal non-fitness domain), `npm run demo:no-model` (a fully
-deterministic, no-model run), `examples/ceiling/` + `npm run demo:ceiling` (heuristic
-vs. composed layout, side by side), and
-[`examples/integrations/`](examples/integrations/README.md) (lightweight adapters for
-an external experiment engine, an HTTP profile store, and a telemetry warehouse —
-examples, not dependencies).
+Useful contribution areas include:
 
-## License
+- framework features;
+- renderer integrations;
+- adapters;
+- tests and evaluations;
+- accessibility;
+- component-contract examples;
+- Figma workflows;
+- documentation;
+- tutorials;
+- design-system examples;
+- bug reports;
+- implementation feedback.
 
-[Apache-2.0](LICENSE).
+Before contributing, read:
+
+- [Contributing guide](CONTRIBUTING.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
+- [Security policy](SECURITY.md)
+
+Browse:
+
+- [Good first issues](https://github.com/DynUI/DynUI-OSS-Framework/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- [Help wanted issues](https://github.com/DynUI/DynUI-OSS-Framework/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+- [Open discussions](https://github.com/DynUI/DynUI-OSS-Framework/discussions)
+
+When proposing a significant change, start with a GitHub Discussion or issue so the
+approach can be agreed before implementation.
+
+## Roadmap
+
+DynUI is currently experimental and APIs may change.
+
+Current priorities include:
+
+- stabilising the core contracts;
+- expanding renderer examples;
+- improving the Figma workflow;
+- strengthening evaluation tooling;
+- adding integration examples;
+- improving contributor documentation;
+- gathering feedback from real application teams.
+
+See the full roadmap:
+
+[DynUI roadmap →](https://www.dynui.dev/docs/ADD_ROADMAP_ROUTE/)
+
+## Community
+
+- [GitHub Discussions](https://github.com/DynUI/DynUI-OSS-Framework/discussions)
+- [GitHub Issues](https://github.com/DynUI/DynUI-OSS-Framework/issues)
+- [DynUI website](https://www.dynui.dev/)
+- [Documentation](https://www.dynui.dev/docs/)
+
+Use Discussions for questions, ideas, architecture proposals and examples of what you are
+building.
+
+Use Issues for reproducible bugs and clearly scoped implementation work.
+
+## Security
+
+Do not report security vulnerabilities through public GitHub issues.
+
+Follow the instructions in:
+
+[SECURITY.md](SECURITY.md)
+
+## Licence
+
+DynUI is available under the [Apache-2.0 licence](LICENSE).
