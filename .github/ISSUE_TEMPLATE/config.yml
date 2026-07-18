@@ -1,8 +1,14 @@
 blank_issues_enabled: false
+
 contact_links:
-  - name: Security or privacy/consent vulnerability
-    url: https://github.com/security/advisories
-    about: Please report security and privacy/consent issues privately — see SECURITY.md. Do not open a public issue.
-  - name: Question or discussion
-    url: https://github.com/discussions
-    about: For usage questions and adoption discussions, please use Discussions.
+  - name: Security, privacy or consent vulnerability
+    url: https://github.com/DynUI/DynUI-OSS-Framework/security/advisories/new
+    about: Report security, privacy and consent vulnerabilities privately. Do not open a public issue.
+
+  - name: Question or adoption discussion
+    url: https://github.com/DynUI/DynUI-OSS-Framework/discussions
+    about: Ask usage questions, discuss architecture and share adoption or implementation ideas.
+
+  - name: DynUI documentation
+    url: https://www.dynui.dev
+    about: Read the quickstart, concepts, guides and framework documentation.
