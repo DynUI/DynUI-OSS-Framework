@@ -6,7 +6,7 @@ clone to a green check without reading the source.
 
 ## Local Setup
 
-Requirements: **Node 20+** (CI tests Node 20 and current stable) and npm.
+Requirements: **Node 22+** (CI tests Node 22 and current stable) and npm.
 
 ```bash
 git clone <repo-url>

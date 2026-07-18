@@ -27,7 +27,7 @@ Enable these settings for `main`:
 
 Require these status checks from `.github/workflows/ci.yml`:
 
-- `test (node 20)`;
+- `test (node 22)`;
 - `test (node 24)`;
 - `package publish smoke test`;
 - `dependency review`.

@@ -41,13 +41,17 @@ see [docs/UPGRADE.md](docs/UPGRADE.md) for the compatibility policy.
   external calls. Examples only — not required dependencies.
 - Package publish smoke test (`scripts/consumer-smoke.mjs`) and a CI job that packs
   the packages and runs a minimal adoption flow in a clean consumer project.
-- CI Node version matrix (Node 20 + current stable) and a release/publish workflow
+- CI Node version matrix (Node 22 + current stable) and a release/publish workflow
   with npm provenance plus a dependency-review check.
 - README "When Not To Use This" guidance and a minimal non-fitness adoption
   walkthrough.
 
 ### Changed
 
+- **Raised the minimum supported Node.js from 20 to 22** (`engines.node >= 22`).
+  Node 20 reached end-of-life in April 2026, and the test runner's glob-based file
+  selection (`node --test "tests/**/*.test.ts"`) requires Node ≥ 21. CI now tests
+  Node 22 and current stable (24).
 - **Production-safe consent defaults.** `BaseProfileAdapter` now defaults to
   deny-by-default consent (`personalization: false`, `analytics: false`,
   `modelTraining: false`). The permissive `DEV_DEFAULT_CONSENT` is now opt-in:
