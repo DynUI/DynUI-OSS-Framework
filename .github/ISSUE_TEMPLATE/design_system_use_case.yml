@@ -1,0 +1,125 @@
+name: Design-system use case
+description: Share a real or proposed design-system personalisation use case
+title: "[Design system]: "
+labels: ["use case"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to explore how DynUI could fit a real design system, product surface or bounded adaptive-interface workflow.
+
+        Do not include confidential product information, private user data or proprietary assets you are not authorised to share.
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Use-case status
+      options:
+        - Exploring the concept
+        - Designing a proof of concept
+        - Building a prototype
+        - Running a controlled pilot
+        - Evaluating for production
+        - Already implemented
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Product platform
+      options:
+        - Web
+        - iOS
+        - Android
+        - Cross-platform mobile
+        - Desktop
+        - Internal tool
+        - Multi-platform
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: surface
+    attributes:
+      label: Product surface
+      description: Describe the bounded screen or surface being personalised.
+      placeholder: "Activity detail, marketplace home, account dashboard or developer workspace"
+    validations:
+      required: true
+
+  - type: textarea
+    id: users
+    attributes:
+      label: User groups and signals
+      description: Which audiences, behaviours, preferences or signals should influence the interface?
+      placeholder: "Performance-focused users, new users without signals, returning users who..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: vocabulary
+    attributes:
+      label: Component vocabulary
+      description: Which existing components or variants may be selected, promoted, grouped or nested?
+    validations:
+      required: true
+
+  - type: textarea
+    id: adaptation
+    attributes:
+      label: Intended adaptation
+      description: Explain how structure, density, hierarchy, grouping, ordering or component selection should change.
+    validations:
+      required: true
+
+  - type: textarea
+    id: invariants
+    attributes:
+      label: Design invariants and guardrails
+      description: Which components, accessibility rules, brand requirements, data requirements or layout limits must never be violated?
+    validations:
+      required: true
+
+  - type: textarea
+    id: baseline
+    attributes:
+      label: Neutral baseline
+      description: What should users see when personalisation consent or meaningful behavioural signals are unavailable?
+    validations:
+      required: true
+
+  - type: textarea
+    id: measurement
+    attributes:
+      label: Measurement and experiments
+      description: How would you determine whether the personalised composition improves the experience?
+    validations:
+      required: false
+
+  - type: textarea
+    id: stack
+    attributes:
+      label: Current design and engineering stack
+      description: Include design tools, component systems, frameworks, experimentation tools and telemetry where relevant.
+    validations:
+      required: false
+
+  - type: textarea
+    id: help
+    attributes:
+      label: What help do you need from the DynUI community?
+      description: Examples include architecture feedback, contract design, manifest design, renderer guidance, evaluation or an integration.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: sharing
+    attributes:
+      label: Sharing and contribution
+      options:
+        - label: I can share a sanitised manifest or component example.
+        - label: I can share screenshots or a public prototype.
+        - label: I would be interested in contributing this as an example.
+        - label: I am open to discussing this use case publicly.
