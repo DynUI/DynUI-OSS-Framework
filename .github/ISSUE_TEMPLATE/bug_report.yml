@@ -1,58 +1,124 @@
 name: Bug report
-description: Report a defect in a published @dynui/* package or the framework behavior.
+description: Report a reproducible defect in a published @dynui/* package or framework behaviour
+title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for filing a bug. **Do not report security or privacy/consent
-        issues here** — see [SECURITY.md](../blob/main/SECURITY.md) for the private
-        reporting path.
+        Thanks for helping improve DynUI.
+
+        Do not report security, privacy or consent vulnerabilities here. Follow the private reporting process in `SECURITY.md`.
+
+        Before submitting, please search existing issues and remove secrets, personal data and private user information from all examples.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
+        - label: I reproduced this using the latest available version or current `main`.
+          required: true
+        - label: I removed secrets and personally identifiable information from this report.
+          required: true
+
   - type: input
     id: package
     attributes:
-      label: Affected package(s)
-      description: e.g. "@dynui/validate", "@dynui/generate"
-      placeholder: "@dynui/..."
+      label: Affected package or area
+      description: Name the affected package, tool or part of the framework.
+      placeholder: "@dynui/validate, @dynui/generate, CLI, Figma export or documentation"
     validations:
       required: true
+
   - type: input
     id: version
     attributes:
-      label: Version
-      placeholder: "0.1.0"
+      label: Version or commit
+      description: Provide the package version, release, branch or commit SHA.
+      placeholder: "0.1.0 or commit abc123"
     validations:
       required: true
+
+  - type: dropdown
+    id: generation_mode
+    attributes:
+      label: Generation mode
+      description: Which generation path was being used?
+      options:
+        - Deterministic / heuristic, no model
+        - Live model provider
+        - Cached model-generated tree
+        - Not applicable
+        - Unknown
+    validations:
+      required: true
+
   - type: textarea
-    id: what-happened
+    id: what_happened
     attributes:
       label: What happened?
-      description: What did you expect, and what happened instead?
+      description: Describe the incorrect behaviour.
+      placeholder: "When I..., DynUI..."
     validations:
       required: true
+
   - type: textarea
-    id: repro
+    id: expected
     attributes:
-      label: Reproduction
-      description: Minimal steps, code, or a manifest/tree fixture that reproduces the issue.
+      label: Expected behaviour
+      description: What did you expect DynUI to do instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Provide exact steps, code, a manifest, a UI tree fixture or a link to a minimal repository.
       render: shell
     validations:
       required: true
+
   - type: dropdown
-    id: provider
+    id: failure_result
     attributes:
-      label: Generation mode
-      description: Is the issue on the deterministic path or a live model path?
+      label: Failure or fallback result
+      description: What happened after the problem occurred?
       options:
-        - Deterministic / heuristic (no model)
-        - Live model provider
-        - Not applicable
+        - Deterministic fallback produced a valid screen
+        - DynUI returned an explicitly non-renderable result
+        - An invalid-looking screen was rendered
+        - The application crashed or blocked
+        - No fallback was expected
+        - Unknown
     validations:
       required: true
+
   - type: textarea
-    id: env
+    id: output
+    attributes:
+      label: Logs, validation output or screenshots
+      description: Include relevant output and redact sensitive data.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
     attributes:
       label: Environment
-      description: Node version, OS, and anything else relevant.
+      description: Include Node version, operating system, package manager, framework and anything else relevant.
+      placeholder: "Node 22, npm 10, macOS 15, React 19"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Include anything else that may help us investigate.
     validations:
       required: false
