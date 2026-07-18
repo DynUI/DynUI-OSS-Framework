@@ -1,31 +1,117 @@
 name: Feature request
-description: Propose a capability or improvement for the self-hosted framework.
+description: Propose a capability or improvement for the self-hosted DynUI framework
+title: "[Feature]: "
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        DynUI is a self-hosted, bring-your-own-provider framework. Requests for
-        a hosted console, managed model, managed registry, or hosted platform features
-        are intentionally out of scope — see the **Project Scope** section of the
-        README.
+        DynUI is a self-hosted, bring-your-own-provider framework.
+
+        Requests for a hosted console, managed model, managed registry, analytics warehouse or hosted platform features are intentionally outside the core project scope.
+
+        For broad architectural proposals, consider starting with a GitHub Discussion.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and discussions for a similar proposal.
+          required: true
+        - label: This request describes a user or contributor problem, not only a preferred implementation.
+          required: true
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Primary audience
+      options:
+        - Application developer
+        - Frontend or platform engineer
+        - Product designer
+        - Design-system team
+        - AI or ML engineer
+        - Experimentation or growth team
+        - Open-source contributor
+        - Other
+    validations:
+      required: true
+
   - type: textarea
     id: problem
     attributes:
       label: Problem
-      description: What are you trying to do, and what's getting in the way?
+      description: What are you trying to do, and what is getting in the way?
+      placeholder: "Teams currently have to..."
     validations:
       required: true
+
+  - type: textarea
+    id: desired_outcome
+    attributes:
+      label: Desired outcome
+      description: What would a successful solution enable?
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Example use case
+      description: Describe a concrete application surface, component vocabulary, user scenario or workflow.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Likely project area
+      options:
+        - Contracts or schemas
+        - Manifest authoring or Figma workflow
+        - Deterministic generation
+        - Model-provider generation
+        - Validation or repair
+        - Consent or privacy
+        - Experiments or telemetry
+        - Renderer
+        - CLI or developer tooling
+        - Testing or evaluation
+        - Documentation
+        - Unsure
+    validations:
+      required: true
+
   - type: textarea
     id: proposal
     attributes:
       label: Proposed solution
-      description: What would you like to see? Consider whether it belongs in core or as an integration example/adapter.
+      description: Describe a possible approach. Consider whether it belongs in core or as an adapter, integration or example.
+    validations:
+      required: false
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Contracts, safety and design-system constraints
+      description: Note implications for bounded generation, validation, deterministic fallback, consent, accessibility or brand governance.
     validations:
       required: true
+
   - type: textarea
     id: alternatives
     attributes:
       label: Alternatives considered
+      description: Could this be solved with existing APIs, feature flags, a CMS, a custom adapter or application-level logic?
     validations:
       required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I would be interested in helping design this.
+        - label: I would be interested in implementing this.
+        - label: I can provide a real-world example or test case.
