@@ -543,7 +543,7 @@ Current priorities include:
 
 See the full roadmap:
 
-[DynUI roadmap →](https://www.dynui.dev/docs/ADD_ROADMAP_ROUTE/)
+[DynUI roadmap →](ROADMAP.md)
 
 ## Community
 
