@@ -1,0 +1,94 @@
+name: Documentation issue
+description: Report unclear, incorrect, missing or outdated DynUI documentation
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The canonical user documentation is published at https://www.dynui.dev.
+
+        Use this form for website documentation, repository documentation, examples, diagrams and API-reference problems.
+
+  - type: dropdown
+    id: problem_type
+    attributes:
+      label: Documentation problem
+      options:
+        - Incorrect information
+        - Missing information
+        - Unclear explanation
+        - Broken link
+        - Outdated example
+        - Code sample does not work
+        - Navigation or discoverability
+        - Typo or formatting
+        - Accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Page or file
+      description: Link to the dynui.dev page or provide the repository path.
+      placeholder: "https://www.dynui.dev/... or docs/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is wrong or unclear?
+      description: Quote the relevant heading or explain where the problem appears.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should the documentation explain?
+      description: Describe the information, instruction or result the reader needs.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Intended reader
+      options:
+        - First-time evaluator
+        - Application developer
+        - Frontend or platform engineer
+        - Product designer
+        - Design-system team
+        - AI or ML engineer
+        - Contributor or maintainer
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Include this when the problem may be version-specific.
+      placeholder: "0.1.0 or current main"
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      description: Proposed wording, an example, diagram or improved structure is welcome.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I would be willing to submit a documentation pull request.
