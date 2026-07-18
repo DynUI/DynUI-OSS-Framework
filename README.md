@@ -1,5 +1,20 @@
 # DynUI
 
+<p align="center">
+  <a href="https://www.dynui.dev/"><strong>Website</strong></a> ·
+  <a href="https://www.dynui.dev/getting-started/quickstart/"><strong>Quickstart</strong></a> ·
+  <a href="https://www.dynui.dev/concepts/how-it-works/"><strong>Documentation</strong></a> ·
+  <a href="https://github.com/DynUI/DynUI-OSS-Framework/discussions"><strong>Discussions</strong></a> ·
+  <a href="https://github.com/DynUI/DynUI-OSS-Framework/issues"><strong>Issues</strong></a>
+</p>
+
+<p align="center">
+  <a href="https://www.dynui.dev/"><img src="https://img.shields.io/badge/docs-dynui.dev-2563eb" alt="Documentation" /></a>
+  <a href="https://github.com/DynUI/DynUI-OSS-Framework/actions/workflows/ci.yml"><img src="https://github.com/DynUI/DynUI-OSS-Framework/actions/workflows/ci.yml/badge.svg" alt="Build status" /></a>
+  <a href="https://www.npmjs.com/package/@dynui/contracts"><img src="https://img.shields.io/npm/v/@dynui/contracts?label=release" alt="Latest release" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-Apache--2.0-blue" alt="Licence" /></a>
+</p>
+
 > **Status: experimental / alpha.** APIs will change.
 
 **Contract-validated personalised UI for modern apps**
@@ -19,6 +34,12 @@ UI tree from that approved vocabulary and validates the result before it can ren
 </p>
 
 <p align="center"><em>One activity, three screens — the same registered vocabulary composed for a performance-, recovery-, and social-oriented user.</em></p>
+
+<p align="center">
+  <a href="https://www.dynui.dev/getting-started/quickstart/"><strong>Get started →</strong></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://www.dynui.dev/concepts/how-it-works/"><strong>Explore the documentation →</strong></a>
+</p>
 
 ## Why DynUI
 
@@ -395,7 +416,7 @@ https://www.dynui.dev
 
 - [Quickstart](https://www.dynui.dev/getting-started/quickstart/) — install DynUI and generate your first personalised interface.
 - [Tutorial](docs/ADOPTION_NEWS.md) — build a personalised screen from component contracts through to rendering.
-- [Core concepts](https://www.dynui.dev/docs/ADD_CONCEPTS_ROUTE/) — understand manifests, profiles, generation, validation and UI trees.
+- [Core concepts](https://www.dynui.dev/concepts/how-it-works/) — understand manifests, profiles, generation, validation and UI trees.
 - [Developer guides](docs/QUICKSTART.md) — integrate DynUI into an application and connect your existing services.
 - [Designer workflow](docs/FIGMA_EXPORT.md) — define behavioural contracts for design-system components.
 - [Architecture](https://www.dynui.dev/docs/ADD_ARCHITECTURE_ROUTE/) — understand the runtime, providers and integration boundaries.
@@ -529,7 +550,7 @@ See the full roadmap:
 - [GitHub Discussions](https://github.com/DynUI/DynUI-OSS-Framework/discussions)
 - [GitHub Issues](https://github.com/DynUI/DynUI-OSS-Framework/issues)
 - [DynUI website](https://www.dynui.dev/)
-- [Documentation](https://www.dynui.dev/docs/)
+- [Documentation](https://www.dynui.dev/concepts/how-it-works/)
 
 Use Discussions for questions, ideas, architecture proposals and examples of what you are
 building.
