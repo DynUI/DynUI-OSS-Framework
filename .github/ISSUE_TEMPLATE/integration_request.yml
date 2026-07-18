@@ -1,0 +1,102 @@
+name: Integration request
+description: Request or propose a renderer, adapter, provider or ecosystem integration
+title: "[Integration]: "
+labels: ["enhancement", "integration"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for integrations with application frameworks, renderers, design tools, model providers, profile systems, experiment platforms, telemetry services and related developer tooling.
+
+        An integration may belong in DynUI core, an official package, an example or a separately maintained community adapter.
+
+  - type: input
+    id: integration_name
+    attributes:
+      label: Integration name
+      placeholder: "Next.js, Storybook, Figma, OpenTelemetry or another platform"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: integration_type
+    attributes:
+      label: Integration type
+      options:
+        - Web renderer or framework
+        - Mobile renderer or framework
+        - Design-system or component tooling
+        - Figma or design tooling
+        - Model provider
+        - Profile or identity system
+        - Experimentation or feature-flag platform
+        - Telemetry or analytics
+        - Storage or cache
+        - Developer tooling
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Target workflow
+      description: Describe the end-to-end workflow this integration should enable.
+      placeholder: "A team should be able to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: value
+    attributes:
+      label: Why this integration matters
+      description: Who needs it, and which adoption barrier would it remove?
+    validations:
+      required: true
+
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Expected integration boundary
+      description: Which DynUI adapter, interface, package, renderer registry or export stage should it connect to?
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Relevant SDKs and examples
+      description: Link to official documentation, SDKs, repositories or representative implementations.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: maturity
+    attributes:
+      label: Current maturity
+      options:
+        - Idea only
+        - Implementation outline
+        - Proof of concept
+        - Working code
+        - Used privately in an application
+    validations:
+      required: true
+
+  - type: textarea
+    id: runtime_constraints
+    attributes:
+      label: Security, privacy and runtime considerations
+      description: Note credentials, personal data, consent, latency, caching, request-time behaviour or provider dependencies.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to help define the integration.
+        - label: I am willing to contribute an implementation.
+        - label: I can maintain or co-maintain the integration.
+        - label: I can provide a real application for testing.
