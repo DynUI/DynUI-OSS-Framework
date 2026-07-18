@@ -12,7 +12,7 @@ artifacts reproducible and attestable.
    [UPGRADE.md](UPGRADE.md).
 3. Tag and publish a GitHub Release (`vX.Y.Z`). This triggers
    [`.github/workflows/release.yml`](../.github/workflows/release.yml):
-   - re-runs typecheck / tests / schema-freshness / build / smoke on Node 20 + current
+   - re-runs typecheck / tests / schema-freshness / build / smoke on Node 22 + current
      stable;
    - publishes every public workspace via **tokenless trusted publishing**
      (`npm publish --workspaces --access public`); provenance is attached
@@ -52,10 +52,10 @@ Set `NPM_TOKEN` **on the `release` environment** (not as a repo secret), add
 
 ## Supported Node versions
 
-CI tests **Node 20 (the declared `engines.node` minimum) and current stable (24)**. Do
-not drop Node 20 coverage without bumping the declared minimum first. Note the publish
+CI tests **Node 22 (the declared `engines.node` minimum) and current stable (24)**. Do
+not drop Node 22 coverage without bumping the declared minimum first. Note the publish
 job itself runs on Node 24 because the trusted-publishing CLI path needs Node ≥ 22.14 —
-this is independent of the packages' supported runtime (`engines.node >= 20`).
+this is independent of the packages' supported runtime (`engines.node >= 22`).
 
 ## Temporary manual release (fallback)
 

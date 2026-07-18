@@ -15,9 +15,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Packages declare engines.node >=20, so test the declared minimum AND
+        # Packages declare engines.node >=22, so test the declared minimum AND
         # current stable. Do not test only a version newer than the minimum.
-        node: [20, 24]
+        node: [22, 24]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20 # prove the declared minimum can consume the packed tarballs
+          node-version: 22 # prove the declared minimum can consume the packed tarballs
       - run: npm install
       # Builds, packs every public package, installs the tarballs in a clean consumer
       # project, and runs the minimal adoption flow (no model key, no provider SDK).

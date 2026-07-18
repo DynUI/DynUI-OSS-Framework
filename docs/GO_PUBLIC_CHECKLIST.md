@@ -84,7 +84,7 @@ explicitly deferred, or assigned an owner.
   - [x] `exports`;
   - [x] `files`;
   - [x] `engines`.
-- [x] Add Node 20 and current stable Node CI matrix.
+- [x] Add Node 22 and current stable Node CI matrix.
 - [x] Split provider SDKs or make them optional / peer dependencies.
 - [x] Ensure deterministic-only install works without model SDKs.
 - [x] Add packed-package smoke test.
