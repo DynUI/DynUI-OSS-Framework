@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DynUI — one activity, three screens</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <div class="wordmark">Dyn<span class="thin">UI</span></div>
+        <p class="slug lede">
+          one activity, composed three ways — deterministic generation, no model credentials
+        </p>
+      </div>
+      <a class="repo-link" href="https://github.com/DynUI/DynUI-OSS-Framework" target="_blank" rel="noopener">( repository ↗ )</a>
+    </header>
+
+    <main class="layout">
+      <!-- Controls -->
+      <section class="controls" aria-label="Controls">
+        <p class="eyebrow"><span class="no">01</span> Athlete</p>
+        <div class="arch-list" id="presets"></div>
+
+        <p class="eyebrow"><span class="no">02</span> Profile signals</p>
+        <div id="signals"></div>
+
+        <label class="consent">
+          <input type="checkbox" id="personalization" checked />
+          <span>Personalisation consent
+            <em>off → neutral screen</em>
+          </span>
+        </label>
+
+        <p class="eyebrow"><span class="no">03</span> Component priority</p>
+        <div id="priorities"></div>
+
+        <button id="regenerate" class="regenerate">Regenerate UITree</button>
+
+        <p class="edit-hint">
+          Editing the real files? Try
+          <code>examples/fitness/manifest.example.json</code>,
+          <code>examples/fitness/sample-activity.json</code>, and
+          <code>examples/fitness/signal-model.json</code>, then reload.
+        </p>
+      </section>
+
+      <!-- Output: the dark room -->
+      <section class="output" aria-label="Generated output">
+        <div class="status-row">
+          <span class="seg" id="segment">segment —</span>
+          <span id="validation">validation —</span>
+        </div>
+
+        <div class="viewtoggle" role="tablist" aria-label="View">
+          <button id="tab-screen" class="on" role="tab" aria-selected="true">Screen</button>
+          <button id="tab-tree" role="tab" aria-selected="false">UITree</button>
+        </div>
+
+        <div id="view-screen" class="view on">
+          <div class="stage">
+            <div class="phone">
+              <div class="screen" id="screen" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-tree" class="view">
+          <pre class="json-wall" id="tree-json"></pre>
+          <p class="view-note">
+            This is the exact tree the renderer on the “Screen” tab draws — every card
+            there is one node here. Providers emit JSON like this, never markup, and it
+            renders only after it passes <span class="ok">validateRenderableTree</span>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

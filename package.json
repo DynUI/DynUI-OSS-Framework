@@ -20,6 +20,7 @@
     "demo:persist": "tsx examples/persist-demo.ts",
     "demo:figma": "tsx examples/figma-demo.ts",
     "demo:no-model": "tsx examples/no-model-demo.ts",
+    "demo:web": "tsx examples/web/server.ts",
     "demo:ceiling": "tsx examples/heuristic-ceiling.ts",
     "gen:screens": "tsx scripts/generate-screens.ts",
     "gen:schema": "tsx scripts/gen-json-schema.ts",

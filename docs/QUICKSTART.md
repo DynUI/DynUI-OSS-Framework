@@ -4,6 +4,11 @@ How to add DynUI to an app, from zero to a personalized, safe screen. Every
 step works with **no model** (the deterministic engine); enabling a model is the
 last, optional step.
 
+> **Just want to see it?** [Open the browser example in GitHub Codespaces](https://codespaces.new/DynUI/DynUI-OSS-Framework?quickstart=1)
+> — a personalised, contract-validated UI you can edit and regenerate, with no local
+> setup and no model credentials. Runs locally too: `npm install && npm run demo:web`.
+> See [`examples/web`](../examples/web).
+
 ## 0. Install & verify
 
 ```bash

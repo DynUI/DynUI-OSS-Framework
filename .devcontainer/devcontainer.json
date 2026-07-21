@@ -1,0 +1,23 @@
+{
+  "name": "DynUI",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  },
+  "onCreateCommand": "npm install",
+  "postAttachCommand": {
+    "example": "npm run demo:web"
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "DynUI example",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}

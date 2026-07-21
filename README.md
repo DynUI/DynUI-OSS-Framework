@@ -41,6 +41,12 @@ UI tree from that approved vocabulary and validates the result before it can ren
   <a href="https://www.dynui.dev/concepts/how-it-works/"><strong>Explore the documentation →</strong></a>
 </p>
 
+<p align="center">
+  <a href="https://codespaces.new/DynUI/DynUI-OSS-Framework?quickstart=1"><img src="https://github.com/codespaces/badge.svg" alt="Open the browser example in GitHub Codespaces" height="28" /></a>
+</p>
+
+<p align="center"><em>Run a personalised, contract-validated UI in your browser — no install, no model credentials.</em></p>
+
 ## Why DynUI
 
 Most personalisation tools change content inside a fixed interface.
@@ -116,10 +122,23 @@ For the complete setup, explanation and integration walkthrough, follow the:
 
 [DynUI Quickstart →](https://www.dynui.dev/getting-started/quickstart/)
 
+Prefer to try it without cloning? [Open the browser example in GitHub Codespaces](https://codespaces.new/DynUI/DynUI-OSS-Framework?quickstart=1)
+— it starts a personalised, contract-validated UI you can edit and regenerate, with
+no local setup and no model credentials.
+
 ## Explore the examples
 
 DynUI includes examples covering deterministic generation, behavioural adaptation,
 experimentation and model-assisted composition.
+
+```bash
+npm run demo:web
+```
+
+Open the [browser example](examples/web) — one activity composed three ways, rendered
+from a validated `UITree`, with editable profiles, component priorities, and a
+Screen ⇄ UITree toggle. Runs locally or
+[in Codespaces](https://codespaces.new/DynUI/DynUI-OSS-Framework?quickstart=1).
 
 ```bash
 npm run demo
